@@ -5,10 +5,13 @@ LDLIBS += -lstdc++ -lm
 Out.txt: math
 	./math > Out.txt
 
-math: math.cc sfuns.cc sfuns.h
-	$(CXX) math.cc sfuns.cc -o math
+math: math.cc sfuns.o
+#	$(CXX) $(CXXFLAGS) math.cc sfuns.o -o math #BEMÆRK BEHØVES IKKE
+
+sfuns.o: sfuns.cc sfuns.h
+#	$(CXX) $(CXXFLAGS) -c sfuns.cc -o sfuns.o #BEMÆRK BEHØVES IKKE
 
 .PHONY: clean
 
 clean:
-	rm -rf Out.txt math sfuns
+	rm -rf Out.txt math sfuns.o sfuns

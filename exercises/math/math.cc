@@ -16,10 +16,12 @@ int main(){
     std::cout << "exp(pi) = " << exppi << "\n";
     std::cout << "pow(pi, e) = " << piexp << "\n";
     
-
-    //part 2
-    for(size_t i=1; i < 10; i++){
-        std::cout << "fgamma(" << i << ")" << sfuns::fgamma(i) << "\n";
+    //part 3
+    for(size_t i=1; i <= 10; i++){
+        std::cout << "fgamma(" << i << ") = " << sfuns::fgamma(i) << "\n";
+    }
+    for(size_t i=1; i <= 10; i++){
+        std::cout << "lngamma(" << i << ") = " << sfuns::lngamma(i) << "\n";
     }
     return 0;
 }
