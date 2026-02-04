@@ -1,0 +1,25 @@
+float epsilon = 1.19209e-07
+double epsilon = 2.22045e-16
+long float epsilon = 1.0842e-19
+limit epsilon float 1.19209e-07
+limit epsilon double 2.22045e-16
+limit epsilon long double 1.0842e-19
+ 
+We see that compuation manually match the one by limits.
+ 
+approximate epsilon double 2.22045e-16
+approximate epsilon float 1.19209e-07
+Indeed the results match again using this method.
+ 
+a==b ? false
+a>1  ? false
+b>1  ? true
+The computation is done from the left, so a>1 is false since the epsilons is added after 1, the opposite is true in b>1.
+tiny=0.00000000000000011
+1+tiny+tiny=1.00000000000000000
+tiny+tiny+1=1.00000000000000022
+Indeed this confirms my theory.
+d1==d2? false
+d1=0.79999999999999993
+d2=0.80000000000000004
+d1 is equal to d2: true
