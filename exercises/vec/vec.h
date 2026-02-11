@@ -26,6 +26,11 @@ struct vec {
     void set(double a, double b, double c) { x = a; y = b; z = c; }
     void print(const std::string& s = "") const;              // for debugging
 
+    // vector algebra
+    double dot(const vec&) const;   // dot product
+    vec cross(const vec&) const;    // vector (cross) product
+    double norm() const;            // length |v|
+
     // stream output
     friend std::ostream& operator<<(std::ostream&, const vec&);
 };
