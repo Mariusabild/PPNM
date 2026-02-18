@@ -1,0 +1,10 @@
+set terminal svg
+set output "fig3.svg"
+set xlabel "x"
+set ylabel "y"
+set key right bottom
+set tics out
+set yrange [-10:10]
+plot [0:3] \
+         "generated.data" using 1:4 with points pointtype 5 title "generated lngamma(x)"\
+        ,lgamma(x)
