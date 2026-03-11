@@ -40,21 +40,23 @@ int main(int argc, char** argv){
     // diagonalize hydrogen Hamiltonian
     auto [e,Vhyd] = pp::jacobi(H);
 
+    // find index for lowest eigenvalue (ground state)
+    int k0 = 0;
+    for(int k=1;k<e.size();k++)
+        if(e[k] < e[k0]) k0 = k;
+
     std::cout<<"Lowest hydrogen eigenvalues:\n";
     for(int i=0;i<5;i++)
         std::cout<<e[i]<<"\n";
 
     // -------- write wavefunctions to file --------
     std::ofstream wave("wave.dat");
-    wave << "# r f0 f1 f2\n";
+    wave << "# r f0\n";
 
     for(int i=0;i<npoints;i++){
         wave << r[i] << " "
-             << Vhyd(i,0)/sqrt(dr) << " "
-             << Vhyd(i,1)/sqrt(dr) << " "
-             << Vhyd(i,2)/sqrt(dr) << "\n";
-    }
-
+            << Vhyd(i,k0)/sqrt(dr) << "\n";
+}
     wave.close();
 
     // --------------------------------------------------

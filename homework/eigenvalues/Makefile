@@ -1,6 +1,6 @@
 CXXFLAGS += -Wall -Wextra -std=c++23 -O
 rmax = 10
-dr = 1
+dr = 0.4
 
 
 main: main.cc matrix.h jacobi.h
