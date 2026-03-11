@@ -2,45 +2,45 @@
 #include<fstream>
 #include"matrix.h"
 #include"jacobi.h"
-#include<random>
 #include<cstring>
 #include<cmath>
+#include<random>
 
 int main(int argc, char** argv){
 
     double rmax = 10;
     double dr = 0.3;
 
-    for(int i = 1; i < argc; i++){
-        if(strcmp(argv[i], "-rmax") == 0) rmax = atof(argv[++i]);
-        if(strcmp(argv[i], "-dr") == 0) dr = atof(argv[++i]);
+    for(int i=1;i<argc;i++){
+        if(strcmp(argv[i],"-rmax")==0) rmax = atof(argv[++i]);
+        if(strcmp(argv[i],"-dr")==0) dr = atof(argv[++i]);
     }
 
     int npoints = (int)(rmax/dr)-1;
 
     pp::vector r(npoints);
-    for(int i = 0;i<npoints;i++)
+    for(int i=0;i<npoints;i++)
         r[i] = dr*(i+1);
 
-    pp::matrix H(npoints, npoints);
+    pp::matrix H(npoints,npoints);
 
     // kinetic term
     for(int i=0;i<npoints-1;i++){
-        H(i,i)  = -2*(-0.5/dr/dr);
-        H(i,i+1)=  1*(-0.5/dr/dr);
-        H(i+1,i)=  1*(-0.5/dr/dr);
+        H(i,i)   = -2*(-0.5/dr/dr);
+        H(i,i+1) =  1*(-0.5/dr/dr);
+        H(i+1,i) =  1*(-0.5/dr/dr);
     }
 
-    H(npoints-1,npoints-1)=-2*(-0.5/dr/dr);
+    H(npoints-1,npoints-1) = -2*(-0.5/dr/dr);
 
     // potential
     for(int i=0;i<npoints;i++)
-        H(i,i)+=-1/r[i];
+        H(i,i) += -1/r[i];
 
     // diagonalize hydrogen Hamiltonian
     auto [e,Vhyd] = pp::jacobi(H);
 
-    // find index for lowest eigenvalue (ground state)
+    // find ground state
     int k0 = 0;
     for(int k=1;k<e.size();k++)
         if(e[k] < e[k0]) k0 = k;
@@ -49,32 +49,38 @@ int main(int argc, char** argv){
     for(int i=0;i<5;i++)
         std::cout<<e[i]<<"\n";
 
-    // -------- write wavefunctions to file --------
+    std::cout<<"Ground state energy "<<e[k0]<<"\n";
+
+    // -----------------------------
+    // write wavefunction to file
+    // -----------------------------
+
     std::ofstream wave("wave.dat");
-    wave << "# r f0\n";
+
+    wave<<"# r f(r)\n";
 
     for(int i=0;i<npoints;i++){
-        wave << r[i] << " "
-            << Vhyd(i,k0)/sqrt(dr) << "\n";
-}
+        wave<<r[i]<<" "<<Vhyd(i,k0)/sqrt(dr)<<"\n";
+    }
+
     wave.close();
 
+    /*
     // --------------------------------------------------
-    // Jacobi test
+    // Jacobi test 
     // --------------------------------------------------
 
     std::mt19937 rng(42);
     std::uniform_real_distribution<double> dist(0.0,1.0);
 
-    int n = 4;
-
+    int n=4;
     pp::matrix A(n,n);
 
     for(int i=0;i<n;i++){
         for(int j=i;j<n;j++){
             double x = dist(rng);
-            A(i,j) = x;
-            A(j,i) = x;
+            A(i,j)=x;
+            A(j,i)=x;
         }
     }
 
@@ -90,7 +96,7 @@ int main(int argc, char** argv){
 
     pp::matrix D(n,n);
     for(int i=0;i<n;i++)
-        D(i,i) = w[i];
+        D(i,i)=w[i];
 
     pp::matrix VT = V.T();
 
@@ -107,6 +113,6 @@ int main(int argc, char** argv){
 
     VTV.print("\nVTV (should be identity):");
     VVT.print("\nVVT (should be identity):");
-
+*/
     return 0;
 }

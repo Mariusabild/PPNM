@@ -37,10 +37,13 @@ std::tuple<vector,matrix> jacobi(matrix A){
 
         for(int p = 0; p < n-1; p++){
             for(int q = p+1; q < n; q++){
+                
 
                 double apq = A(p,q);
                 double app = A(p,p);
                 double aqq = A(q,q);
+                
+                if(fabs(apq) < 1e-12) continue;
 
                 double theta = 0.5*std::atan2(2*apq, aqq-app);
 
