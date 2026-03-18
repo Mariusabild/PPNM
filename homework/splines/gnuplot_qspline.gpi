@@ -1,0 +1,13 @@
+set terminal pngcairo size 800,600
+set output "qspline.png"
+
+set title "Quadratic spline"
+set xlabel "x"
+set ylabel "y"
+set grid
+set key left top
+
+plot \
+"data_qspline.txt" using 1:2 with lines title "cos(x)", \
+"data_qspline.txt" using 1:3 with lines title "quadratic spline", \
+"data_qspline.txt" using 1:4 with lines title "integral"

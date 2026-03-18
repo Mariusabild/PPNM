@@ -59,8 +59,15 @@ int main(int argc, char** argv){
 
     wave<<"# r f(r)\n";
 
+    wave<<"# r f0 f1 f2\n";
+
     for(int i=0;i<npoints;i++){
-        wave<<r[i]<<" "<<Vhyd(i,k0)/sqrt(dr)<<"\n";
+        wave
+        << r[i] << " "
+        << Vhyd(i,k0)/sqrt(dr) << " "
+        << Vhyd(i,k0+1)/sqrt(dr) << " "
+        << Vhyd(i,k0+2)/sqrt(dr)
+        << "\n";
     }
 
     wave.close();

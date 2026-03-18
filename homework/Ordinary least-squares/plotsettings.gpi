@@ -1,0 +1,8 @@
+set terminal pngcairo
+set output "decay.png"
+
+set xlabel "Time (days)"
+set ylabel "Activity"
+
+plot "data.txt" using 1:2:3 with yerrorbars title "data", \
+     "fit.txt" using 1:2 with lines title "fit"

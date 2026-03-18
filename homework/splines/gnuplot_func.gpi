@@ -1,0 +1,12 @@
+set terminal pngcairo size 800,600
+set output "functional.png"
+
+set title "Functional quadratic spline"
+set xlabel "x"
+set ylabel "y"
+set grid
+set key left top
+
+plot \
+"data_func.txt" using 1:2 with lines title "cos(x)", \
+"data_func.txt" using 1:3 with lines title "functional qspline"

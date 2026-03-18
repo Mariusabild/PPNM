@@ -8,13 +8,15 @@ set output "wave.png"
 
 set xlabel "r"
 set ylabel "f(r)"
-set title "Hydrogen ground state radial wavefunction"
+set title "Hydrogen radial wavefunctions"
 
 set grid
 
-plot "wave.dat" using 1:2 with lines lw 2 title "numerical"
-
-
+plot "wave.dat" using 1:2 with lines lw 2 title "n=1 numerical", \
+     "wave.dat" using 1:3 with lines lw 2 title "n=2 numerical", \
+     "wave.dat" using 1:4 with lines lw 2 title "n=3 numerical", \
+     x*exp(-x) with lines lw 2 title "n=1 exact"
+     
 # -------------------------
 # dr convergence
 # -------------------------

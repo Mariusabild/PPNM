@@ -1,0 +1,13 @@
+set terminal pngcairo size 800,600
+set output "cubic_compare.png"
+
+set title "Quadratic vs cubic spline"
+set xlabel "x"
+set ylabel "y"
+set grid
+set key left top
+
+plot \
+"data_qspline.txt" using 1:2 with lines title "cos(x)", \
+"data_qspline.txt" using 1:3 with lines title "quadratic spline", \
+"data.txt" using 1:2 smooth csplines title "gnuplot cubic spline"
