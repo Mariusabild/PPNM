@@ -149,5 +149,89 @@ int main(){
         std::cout << "Saved orbit_precession.txt\n";
     }
 
+
+    // -------------------------------
+// PART C: THREE-BODY FIGURE-8
+// -------------------------------
+{
+    auto f = [](double t, pp::vector z){
+
+        pp::vector dz(12);
+
+        // positions
+        double x1=z[6],  y1=z[7];
+        double x2=z[8],  y2=z[9];
+        double x3=z[10], y3=z[11];
+
+        // velocities
+        double vx1=z[0], vy1=z[1];
+        double vx2=z[2], vy2=z[3];
+        double vx3=z[4], vy3=z[5];
+
+        // helper: gravitational acceleration
+        auto acc = [](double xi,double yi,double xj,double yj){
+            double dx = xj - xi;
+            double dy = yj - yi;
+            double r  = std::sqrt(dx*dx + dy*dy);
+            double r3 = r*r*r;
+            return std::pair<double,double>{dx/r3, dy/r3};
+        };
+
+        // accelerations
+        auto [a12x,a12y]=acc(x1,y1,x2,y2);
+        auto [a13x,a13y]=acc(x1,y1,x3,y3);
+
+        auto [a21x,a21y]=acc(x2,y2,x1,y1);
+        auto [a23x,a23y]=acc(x2,y2,x3,y3);
+
+        auto [a31x,a31y]=acc(x3,y3,x1,y1);
+        auto [a32x,a32y]=acc(x3,y3,x2,y2);
+
+        // dv/dt
+        dz[0]=a12x+a13x;
+        dz[1]=a12y+a13y;
+
+        dz[2]=a21x+a23x;
+        dz[3]=a21y+a23y;
+
+        dz[4]=a31x+a32x;
+        dz[5]=a31y+a32y;
+
+        // dx/dt
+        dz[6]=vx1; dz[7]=vy1;
+        dz[8]=vx2; dz[9]=vy2;
+        dz[10]=vx3; dz[11]=vy3;
+
+        return dz;
+    };
+
+    // 🔴 Initial conditions (MEGET vigtige)
+    pp::vector z0 = {
+         0.4662036850,  0.4323657300,
+         0.4662036850,  0.4323657300,
+        -0.93240737,   -0.86473146,
+
+        -0.97000436,    0.24308753,
+         0.97000436,   -0.24308753,
+         0.0,           0.0
+    };
+
+    // 🔴 Integrér (små steps!)
+    auto [ts, zs] = pp::driver(f, 0.0, 10.0, z0, 0.01, 1e-6, 1e-6);
+
+    // 🔴 Gem data
+    std::ofstream file("threebody.txt");
+
+    for(int i=0;i<ts.size();i++){
+        file << zs[i][6]  << " " << zs[i][7]  << " "
+             << zs[i][8]  << " " << zs[i][9]  << " "
+             << zs[i][10] << " " << zs[i][11] << "\n";
+    }
+
+    file.close();
+
+    std::cout << "Saved threebody.txt\n";
+}
+
     return 0;
 }

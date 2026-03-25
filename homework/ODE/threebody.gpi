@@ -1,0 +1,12 @@
+set terminal pngcairo size 800,600
+set output "threebodyplot.png"
+
+set title "Three body plot"
+set xlabel "x"
+set ylabel "y"
+set size ratio -1
+
+plot \
+"threebody.txt" using 1:2 w l title "body1", \
+"threebody.txt" using 3:4 w l title "body2", \
+"threebody.txt" using 5:6 w l title "body3"
