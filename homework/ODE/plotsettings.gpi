@@ -1,0 +1,12 @@
+set terminal pngcairo size 800,600
+set output "plot.png"
+
+set title "Orbital motion"
+set xlabel "x"
+set ylabel "y"
+set size ratio -1
+
+plot \
+"orbit_circle.txt" using (1/$2)*cos($1):(1/$2)*sin($1) with lines title "circle", \
+"orbit_ellipse.txt" using (1/$2)*cos($1):(1/$2)*sin($1) with lines title "ellipse", \
+"orbit_precession.txt" using (1/$2)*cos($1):(1/$2)*sin($1) with lines title "precession"
