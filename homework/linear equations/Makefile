@@ -1,9 +1,26 @@
-CXXFLAGS += -Wall -Wextra -std=c++23 -O
+CXXFLAGS += -Wall -Wextra -std=c++23 -O3
 
 main: main.cc matrix.h qr.h
 	g++ $(CXXFLAGS) $< -o main
-	./main
+
+all: timing.png
+
+timing.png: out.times.data timing.gpi
+	gnuplot timing.gpi
+
+out.times.data: timing
+	>$@
+	for N in $$(seq 300 100 1000); do \
+		time --format "$$N %e" --output $@ --append \
+		./timing -size $$N 1>out 2>err ;\
+	done
+
+timing: timing.cc matrix.h qr.h
+	g++ $(CXXFLAGS) $< -o timing
+
 
 .PHONY: clean
 clean:
-	rm main
+	rm -f main timing out.times.data timing.png out err
+
+	

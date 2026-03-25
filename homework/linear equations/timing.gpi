@@ -1,0 +1,14 @@
+set terminal pngcairo size 800,600
+set output "timing.png"
+
+set title "QR decomposition timing"
+set xlabel "N"
+set ylabel "Time (s)"
+
+set grid
+
+f(x) = a*x**3
+fit f(x) "out.times.data" using 1:2 via a
+
+plot "out.times.data" using 1:2 with points pt 7 title "data", \
+     f(x) with lines title sprintf("fit: %.2e * N^3", a)
