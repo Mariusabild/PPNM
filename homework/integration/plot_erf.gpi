@@ -1,0 +1,11 @@
+set terminal pngcairo size 800,600
+set output "erf_plot.png"
+
+set logscale xy
+set xlabel "acc"
+set ylabel "error"
+set grid
+
+plot "erf_data.txt" using 1:2 with linespoints
+
+unset output 

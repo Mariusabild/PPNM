@@ -1,13 +1,23 @@
-CXX = g++ 
+CXX = g++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++23 -O
 
-Out.txt: main
-	./main > Out.txt
-	cat Out.txt
-
 main: main.cc
+	$(CXX) $(CXXFLAGS) main.cc -o main
 
-.PHONY:clean
+out_cmd.txt: main
+	./main -n 1 -n 2 -n 3 -n 4 -n 5 > out_cmd.txt
+	cat out_cmd.txt
+
+out_stdin.txt: main
+	echo 1 2 3 4 5 | ./main > out_stdin.txt
+	cat out_stdin.txt
+
+out_file.txt: main
+	echo "1 2 3 4 5" > input.txt
+	./main --input input.txt --output out_file.txt
+	cat out_file.txt
+
+.PHONY: clean
 
 clean:
-	rm -rf Out.txt main
+	rm -f main out_*.txt input.txt

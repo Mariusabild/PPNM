@@ -1,0 +1,11 @@
+set terminal png
+set output "plot.png"
+set xlabel "Number of sampling points"
+set ylabel "Error"
+set logscale x
+set logscale y
+
+plot "circle_data.txt" using 1:2 with lines title "Actual error circle", \
+"circle_data.txt" using 1:3 with lines title "Estimated error circle", \
+"exp_data.txt" using 1:2 with lines title "Actual error exp", \
+"exp_data.txt" using 1:3 with lines title "Estimated error exp"

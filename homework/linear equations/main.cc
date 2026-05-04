@@ -20,6 +20,7 @@ int main() {
     }
 
     //print testmatrice
+    std::cout << "Generatin a test matrix: " << "\n";
     A.print("\n Test matrix: ");
 
     //print qr-decomponerede matrice

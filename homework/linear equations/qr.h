@@ -9,8 +9,8 @@ struct qr {
     matrix Q;
     matrix R;
         
-    qr(const matrix& A);
-    vector solve(const vector& b) const;
+    qr(const matrix& A); //Constructor
+    vector solve(const vector& b) const; 
     double det() const;
     matrix inverse() const;
 
@@ -88,9 +88,6 @@ inline matrix qr::inverse() const {
         inv[i] = x;
     }
     return inv;
-
-    
-
 
 }
 
