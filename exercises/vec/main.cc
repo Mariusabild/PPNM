@@ -73,6 +73,8 @@ int main(){
     test( approx_double(vec(3,4,0).norm(), 5.0), "norm: |(3,4,0)| = 5");
     test( approx_double(u.norm(), std::sqrt(u.dot(u))), "norm: |u| = sqrt(u·u)");
 
+    std::cout << "The difference in the semantics from the traditional form is that" << "\n";
+    std::cout << "in the traditional version, it needs to create a copy. In the modern version, a is passed by value, so the copy (or move) happens automatically when entering the function. The function can then modify a directly with += and return it. This can be more efficient because move semantics may be used instead of copying." << "\n";
     std::cout << "\nDone.\n";
     return 0;
 }

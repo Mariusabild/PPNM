@@ -1,4 +1,4 @@
-set terminal svg
+set terminal svg background "white"
 set output "fig1.svg"
 set xlabel "x"
 set ylabel "y"
@@ -6,5 +6,5 @@ set key right bottom
 set tics out
 set yrange [-10:10]
 plot [-3:3] \
-	 "erf.data" using 1:2 with points pointtype 3 title "erf from wiki"\
+	 "generated.data" using 1:2 with points pointtype 3 title "erf from wiki"\
 	,erf(x)

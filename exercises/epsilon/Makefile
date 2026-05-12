@@ -1,11 +1,10 @@
-CXX = g++ -std=c++23
+CXX += -std=c++23
 CXXFLAGS += -Wall -Wextra -Werror
 
-Out.txt: main
+main: main.cc approx.cc 
+	$(CXX) $(CXXFLAGS) $^ -o main
 	./main > Out.txt
 	cat Out.txt
-
-main: main.cc approx.cc 
 
 .PHONY: clean
 clean:

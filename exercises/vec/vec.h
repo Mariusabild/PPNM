@@ -38,7 +38,7 @@ struct vec {
 // non-member operators
 vec operator-(const vec&);
 vec operator-(const vec&, const vec&);
-vec operator+(const vec&, const vec&);
+vec operator+(vec, const vec&);
 vec operator*(const vec&, double);
 vec operator*(double, const vec&);
 vec operator/(const vec&, double);

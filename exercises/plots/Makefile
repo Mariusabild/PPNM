@@ -20,4 +20,4 @@ fig3.svg: fig3.gpi generated.data
 .PHONY:clean
 
 clean:
-	rm -rf generated.data fig1.svg fig2.svg main
+	rm -rf generated.data fig1.svg fig2.svg fig3.svg main

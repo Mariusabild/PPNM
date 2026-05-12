@@ -27,9 +27,14 @@ int main(int argc,char** argv){
 	threads.reserve(nthreads);
 	std::vector< datum > data(nthreads);
 	for(int i=0;i<nthreads;++i){
-		data[i].start=1+(nterms/nthreads)*i;
-		data[i].end=1+(nterms/nthreads)*(i+1);
-		threads.emplace_back(harm,std::ref(data[i]));
+    	data[i].start = 1 + (nterms/nthreads)*i;
+    	data[i].end   = 1 + (nterms/nthreads)*(i+1);
+	}
+
+	data.back().end = nterms + 1;
+
+	for(int i=0;i<nthreads;++i){
+    	threads.emplace_back(harm,std::ref(data[i]));
 	}
 	for(std::thread &thread : threads)thread.join();
 	double total=0;

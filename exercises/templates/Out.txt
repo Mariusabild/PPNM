@@ -1,0 +1,7 @@
+Testing vector arithmetic
+[PASS] u*2 == 2*u
+[PASS] dot: ex.ey = 0
+[PASS] ortho: u.(u x v) = 0
+[PASS] norm: |ex| = 1
+
+Done

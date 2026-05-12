@@ -4,7 +4,7 @@ TIME = time --append --output $@ --format "$$nthreads %e %U"
 
 times.svg: out.times Makefile
 	echo '\
-		set terminal svg ;\
+		set terminal svg background rgb "white" ;\
 		set output "$@" ;\
 		set xlabel "number of threads" ;\
 		set ylabel "real time" ;\

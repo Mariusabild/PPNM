@@ -28,7 +28,7 @@ int main(){
     //using V = vec<std::complex<double>>;
 
     V u(1, 2, 3), v(4, 5, 6);
-    std::cout << "Tester vector aritmetik...\n";
+    std::cout << "Testing vector arithmetic\n";
 
     // Test multiplikation (u*2 og 2*u)
     V m1 = u * 2;
@@ -45,6 +45,6 @@ int main(){
     // Norm test
     test( approx_universal(ex.norm(), 1), "norm: |ex| = 1");
     
-    std::cout << "\nFærdig! Virker nu med alle typer.\n";
+    std::cout << "\nDone\n";
     return 0;
 }

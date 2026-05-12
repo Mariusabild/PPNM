@@ -69,5 +69,3 @@ int main(){
     std::cout << "d2=" << d2 << "\n";
     std::cout << "d1 is equal to d2: "<< (approx(d1,d2)==1 ?"true":"false")<< "\n";
 }
-
-

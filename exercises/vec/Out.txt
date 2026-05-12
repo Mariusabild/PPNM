@@ -31,5 +31,7 @@ u/2 = { 0.5, 1, 1.5 }
 [PASS] norm: |ex| = 1
 [PASS] norm: |(3,4,0)| = 5
 [PASS] norm: |u| = sqrt(u·u)
+The difference in the semantics from the traditional form is that
+in the traditional version, it needs to create a copy. In the modern version, a is passed by value, so the copy (or move) happens automatically when entering the function. The function can then modify a directly with += and return it. This can be more efficient because move semantics may be used instead of copying.
 
 Done.
