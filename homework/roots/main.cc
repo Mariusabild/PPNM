@@ -6,10 +6,8 @@ pp::vector f_test1(const pp::vector& x){
     return {x[0]*x[0]-2};
 }
 pp::vector f_test2(const pp::vector& v){
-
     double x=v[0];
     double y=v[1];
-
     return {
         x+y-2,
         x-y
@@ -19,7 +17,6 @@ pp::vector f_test2(const pp::vector& v){
 pp::vector rosen_grad(const pp::vector& v){
     double x=v[0];
     double y=v[1];
-
     return {
         -2*(1-x)-400*x*(y-x*x),
         200*(y-x*x)
@@ -27,10 +24,8 @@ pp::vector rosen_grad(const pp::vector& v){
 }
 
 pp::vector himmelblau_grad(const pp::vector& v){
-
     double x = v[0];
     double y = v[1];
-
     return {
         4*x*(x*x+y-11) + 2*(x+y*y-7),
         2*(x*x+y-11) + 4*y*(x+y*y-7)
@@ -38,22 +33,14 @@ pp::vector himmelblau_grad(const pp::vector& v){
 }
 
 //Part B
-pp::vector hydrogen_ode(double r,
-                        const pp::vector& y,
-                        double E)
-{
+pp::vector hydrogen_ode(double r,const pp::vector& y,double E){
     return {
         y[1],
         -2.0*(E + 1.0/r)*y[0]
     };
 }
 
-double M(double E,
-         double rmin = 1e-3,
-         double rmax = 8.0,
-         double acc = 0.01,
-         double eps = 0.01){
-
+double M(double E,double rmin = 1e-3,double rmax = 8.0,double acc = 0.01,double eps = 0.01){
     pp::vector y0 = {
         rmin-rmin*rmin,
         1-2*rmin
@@ -69,12 +56,7 @@ double M(double E,
     return ylist.back()[0];
 }
 
-pp::vector hydrogen_root_param(const pp::vector& x,
-                         double rmin,
-                         double rmax,
-                         double acc,
-                         double eps){
-
+pp::vector hydrogen_root_param(const pp::vector& x,double rmin,double rmax,double acc,double eps){
     return {M(x[0],rmin,rmax,acc,eps)};
 }
 
@@ -84,10 +66,8 @@ pp::vector hydrogen_root(const pp::vector& x){
 }
 
 void hydrogen_wavefunction(double E){
-
     double rmin = 1e-3;
     double rmax = 8.0;
-
     pp::vector y0 = {
         rmin-rmin*rmin,
         1-2*rmin
@@ -102,7 +82,7 @@ void hydrogen_wavefunction(double E){
 
     std::ofstream out("hydrogen.data");
 
-    for(int i=0;i<rlist.size();i++){
+    for(size_t i=0;i<rlist.size();i++){
 
         double r = rlist[i];
 
@@ -110,12 +90,10 @@ void hydrogen_wavefunction(double E){
 
         double exact = r*std::exp(-r);
 
-        out
-            << r << " "
-            << numerical << " "
-            << exact << "\n";
+        out << r << " " << numerical << " " << exact << "\n";
     }
 }
+
 
 int main(){
     pp::vector start_1 = {1.0};
@@ -133,10 +111,13 @@ int main(){
     pp::vector start_himmel2 = {-3,3};
     pp::vector root_himmel2 = pp::newton(himmelblau_grad,start_himmel2, 1e-2,1e-3, 10000);
 
+    std::cout << "Part A: " << "\n\n";
+    std::cout << "Some simple tests: " << "\n";
     root_test1.print("root for x^2-2 = 0, is: ");
     std::cout << "expected root: (1.41421356)\n\n";
     root_test2.print("root for x+y-2 = 0 & x-y = 0 is: ");
     std::cout << "expected root: (1,1)\n\n";
+    std::cout << "Test for rosenbock and Himmelblau functions: " << "\n";
     root_rosen.print("root for the rosenbock function is: ");
     std::cout << "expected root: (1,1)\n\n";
     root_himmel.print("root for Himmelblau gradient is: ");
@@ -160,6 +141,7 @@ int main(){
           << M(-0.6)
           << "\n";
     */
+    std::cout << "Part B:" << "\n\n";
     pp::vector Estart = {-0.4};
     pp::vector Eroot = pp::newton(hydrogen_root,Estart,1e-6,1e-3,100);
 
@@ -170,8 +152,8 @@ int main(){
 
     hydrogen_wavefunction(E0);
 
-    std::cout
-    << "wavefunction written to hydrogen.data\n";
+    std::cout << "wavefunction written to hydrogen.data\n";
+    std::cout << "plot written to hydrogen.svg, please inspect :)" << "\n";
 
     std::cout << "\nConvergence in rmax:\n";
 
@@ -179,24 +161,13 @@ int main(){
 
     auto rootfun =
         [rmax](const pp::vector& x){
-            return hydrogen_root_param(
-                x,
-                1e-3,
-                rmax,
-                0.01,
-                0.01
-            );
+            return hydrogen_root_param(x,1e-3,rmax,0.01,0.01);
         };
 
     pp::vector E0 =
     pp::newton(rootfun,{-0.5});
 
-    std::cout
-        << "rmax = "
-        << rmax
-        << "   E0 = "
-        << E0[0]
-        << "\n";
+    std::cout << "rmax = " << rmax << "   E0 = " << E0[0] << "\n";
 }
 std::cout << "\nConvergence in rmin:\n";
 
@@ -204,24 +175,13 @@ for(double rmin : {1e-1,1e-2,1e-3,1e-4,1e-5}){
 
     auto rootfun =
         [rmin](const pp::vector& x){
-            return hydrogen_root_param(
-                x,
-                rmin,
-                8.0,
-                0.01,
-                0.01
-            );
+            return hydrogen_root_param(x,rmin,8.0,0.01,0.01);
         };
 
     pp::vector E0 =
         pp::newton(rootfun,{-0.5});
 
-    std::cout
-        << "rmin = "
-        << rmin
-        << "   E0 = "
-        << E0[0]
-        << "\n";
+    std::cout << "rmin = " << rmin << "   E0 = " << E0[0] << "\n";
 }
 std::cout << "\nConvergence in acc:\n";
 
@@ -229,24 +189,13 @@ for(double acc : {1e-1,1e-2,1e-3,1e-4}){
 
     auto rootfun =
         [acc](const pp::vector& x){
-            return hydrogen_root_param(
-                x,
-                1e-3,
-                8.0,
-                acc,
-                0.01
-            );
+            return hydrogen_root_param(x, 1e-3, 8.0, acc, 0.01);
         };
 
     pp::vector E0 =
         pp::newton(rootfun,{-0.5});
 
-    std::cout
-        << "acc = "
-        << acc
-        << "   E0 = "
-        << E0[0]
-        << "\n";
+    std::cout << "acc = " << acc << "   E0 = " << E0[0] << "\n";
 }
 std::cout << "\nConvergence in eps:\n";
 
@@ -254,25 +203,33 @@ for(double eps : {1e-1,1e-2,1e-3,1e-4}){
 
     auto rootfun =
         [eps](const pp::vector& x){
-            return hydrogen_root_param(
-                x,
-                1e-3,
-                8.0,
-                0.01,
-                eps
-            );
+            return hydrogen_root_param(x, 1e-3, 8.0, 0.01, eps);
         };
 
     pp::vector E0 =
         pp::newton(rootfun,{-0.5});
 
-    std::cout
-        << "eps = "
-        << eps
-        << "   E0 = "
-        << E0[0]
-        << "\n";
+    std::cout << "eps = " << eps << "   E0 = " << E0[0] << "\n";
 }
+
+    //Part C
+    std::cout << "Part C: " << "\n\n";
+pp::vector root_rosen_quad =
+    pp::newton_quad(rosen_grad, start_rosen, 1e-2, 1e-3, 10000);
+
+root_rosen_quad.print(
+    "Rosenbrock with quadratic line-search: "
+);
+
+pp::vector root_rosen_reuse =
+    pp::newton_reuse(rosen_grad, start_rosen, 1e-2, 1e-3, 10000);
+
+    root_rosen_reuse.print(
+    "Rosenbrock with reused Jacobian matrix: "
+);
+
+std::cout
+    << "expected root: (1,1)\n\n";
     
     return 0;
 }

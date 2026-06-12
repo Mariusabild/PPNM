@@ -1,9 +1,13 @@
+Part A: 
+
+Some simple tests: 
 root for x^2-2 = 0, is:       1.42 
 expected root: (1.41421356)
 
 root for x+y-2 = 0 & x-y = 0 is:          1          1 
 expected root: (1,1)
 
+Test for rosenbock and Himmelblau functions: 
 root for the rosenbock function is:          1          1 
 expected root: (1,1)
 
@@ -13,9 +17,12 @@ expected root: (3,2)
 root for Himmelblau gradient from (-3,3) is:      -2.81       3.13 
 expected root: (-2.805118,3.131312)
 
+Part B:
+
 Ground state energy:       -0.5 
 expected energy: (-0.5)
 wavefunction written to hydrogen.data
+plot written to hydrogen.svg, please inspect :)
 
 Convergence in rmax:
 rmax = 4   E0 = -0.483941
@@ -42,3 +49,9 @@ eps = 0.1   E0 = -0.500897
 eps = 0.01   E0 = -0.5
 eps = 0.001   E0 = -0.5
 eps = 0.0001   E0 = -0.5
+Part C: 
+
+Rosenbrock with quadratic line-search:          1          1 
+Rosenbrock with reused Jacobian matrix:          1          1 
+expected root: (1,1)
+
