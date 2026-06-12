@@ -9,4 +9,4 @@ main: main.cc
 .PHONY:clean
 
 clean:
-	rm main
+	rm main *.png fit.txt data.txt Out.txt

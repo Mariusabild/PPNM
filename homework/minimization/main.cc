@@ -93,9 +93,10 @@ auto deviation =
         );
 
     std::cout
-        << "Mass = "  << fit[0] << "\n"
-        << "Gamma = " << fit[1] << "\n"
-        << "A = "     << fit[2] << "\n";
+    << "Part B: Higgs fit\n"
+    << "Mass  = " << fit[0] << "\n"
+    << "Gamma = " << std::abs(fit[1]) << "\n"
+    << "A     = " << fit[2] << "\n\n";
 
         std::ofstream fitfile("fit.txt");
 
@@ -113,38 +114,59 @@ for(double E=100; E<=160; E+=0.1){
 }
 
     pp::vector r0(2);
+r0[0] = -1;
+r0[1] = 1;
 
-    r0[0]=-1;
-    r0[1]=1;
+pp::vector r =
+    pp::newton_min(
+        rosenbrock,
+        r0
+    );
 
-    pp::vector r=
-        pp::newton_min(
-            rosenbrock,
-            r0
-        );
+pp::vector r_c =
+    pp::newton_min_central(
+        rosenbrock,
+        r0
+    );
 
-    std::cout
-        << "Rosenbrock minimum = "
-        << r[0] << " "
-        << r[1]
-        << "\n";
+pp::vector h0(2);
+h0[0] = 2;
+h0[1] = 2;
 
-        pp::vector h0(2);
-
-h0[0]=2;
-h0[1]=2;
-
-pp::vector h=
+pp::vector h =
     pp::newton_min(
         himmelblau,
         h0
     );
 
+pp::vector h_c =
+    pp::newton_min_central(
+        himmelblau,
+        h0
+    );
+
 std::cout
-    << "Himmelblau minimum = "
+    << "Part A/C: Comparison\n\n"
+
+    << "Rosenbrock\n"
+    << "Forward difference : "
+    << r[0] << " "
+    << r[1] << "\n"
+
+    << "Central difference : "
+    << r_c[0] << " "
+    << r_c[1] << "\n\n"
+
+    << "Himmelblau\n"
+    << "Forward difference : "
     << h[0] << " "
-    << h[1]
-    << "\n";
+    << h[1] << "\n"
+
+    << "Central difference : "
+    << h_c[0] << " "
+    << h_c[1] << "\n\n"
+
+    << "Conclusion: For the Rosenbrock, we see that the central difference is more correct as we expect (1,1), which the central difference method yields, however using 1 more step. The Himmelblau is'nt improved by using the central difference method however.\n";
 
     return 0;
 }
