@@ -49,6 +49,12 @@ int main(int argc, char** argv){
     for(int i=0;i<5;i++)
         std::cout<<e[i]<<"\n";
 
+    std::cout << "\nComparison with exact hydrogen energies:\n";
+    std::cout << "n=1: numerical = " << e[0]
+          << ", exact = -0.5\n";
+    std::cout << "n=2: numerical = " << e[1]
+          << ", exact = -0.125\n";
+
     std::cout<<"Ground state energy "<<e[k0]<<"\n";
 
     // -----------------------------
@@ -72,7 +78,7 @@ int main(int argc, char** argv){
 
     wave.close();
 
-    /*
+    
     // --------------------------------------------------
     // Jacobi test 
     // --------------------------------------------------
@@ -91,11 +97,11 @@ int main(int argc, char** argv){
         }
     }
 
-    A.print("\nTest matrix:");
+    A.print("\nRandom symmetric test matrix A:");
 
     auto [w,V] = pp::jacobi(A);
 
-    V.print("\nEigenvectors:");
+    V.print("\nDetermined eigenvectors:");
 
     std::cout<<"\nEigenvalues:\n";
     for(int i=0;i<w.size();i++)
@@ -112,14 +118,15 @@ int main(int argc, char** argv){
     pp::matrix VTV  = VT*V;
     pp::matrix VVT  = V*VT;
 
-    VTAV.print("\nVTAV (should be diagonal):");
+    VTAV.print("\nV^TAV (should be diagonal):");
     D.print("\nD (eigenvalues on diagonal):");
 
-    VDVT.print("\nVDVT (should equal original A):");
+    VDVT.print("\nVDV^T (should equal original A):");
     A.print("\nOriginal A:");
 
-    VTV.print("\nVTV (should be identity):");
-    VVT.print("\nVVT (should be identity):");
-*/
+    VTV.print("\nV^TV (should be identity):");
+    VVT.print("\nVV^T (should be identity):");
+    std::cout << "Notice the off-diagonal elements is zero within machine precision, as expected" << "\n";
+    std::cout << "For part B, check wave.png to see the numerically calculated wavefunctions, and the two excited states";
     return 0;
 }

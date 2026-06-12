@@ -2,7 +2,7 @@ CXXFLAGS += -std=c++23 -O
 
 main: main.cc
 	g++ $(CXXFLAGS) $< -o main
-	./main
+	./main > Out.txt
 	gnuplot plotsettings.gpi
 	gnuplot threebody.gpi
 

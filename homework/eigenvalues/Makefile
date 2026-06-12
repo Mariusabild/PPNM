@@ -4,14 +4,15 @@ CXXFLAGS += -Wall -Wextra -std=c++23 -O
 rmax = 10
 dr = 0.4
 
+all: main wave.dat
+
 # compile program
 main: main.cc matrix.h jacobi.h
 	g++ $(CXXFLAGS) $< -o main
 
-
 # generate wavefunction data
 wave.dat: main
-	./main -rmax $(rmax) -dr $(dr)
+	./main -rmax $(rmax) -dr $(dr) > Out.txt
 
 
 # dr convergence test

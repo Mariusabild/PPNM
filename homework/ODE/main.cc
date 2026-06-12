@@ -15,7 +15,7 @@ int main(){
             return pp::vector{ y[1], -y[0] };
         };
 
-        pp::vector y0 = {1.0, 0.0};
+        pp::vector y0 = {1.0, 0};
 
         auto [xs, ys] = pp::driver(f, 0.0, 10.0, y0);
 
@@ -78,7 +78,7 @@ int main(){
 
     // Case 1: Circular orbit (ε = 0)
     {
-        double eps = 0.0;
+        double eps = 10e-6;
 
         auto f = [eps](double phi, pp::vector y){
             return pp::vector{
@@ -88,9 +88,9 @@ int main(){
         };
 
         //small pertubation
-        pp::vector y0 = {1.0, 1e-6};
+        pp::vector y0 = {1.0, 0};
 
-        auto [phis, ys] = pp::driver(f, 0.0, 20.0, y0, 0.125, 1e-10, 1e-10);
+        auto [phis, ys] = pp::driver(f, 0.0, 100.0, y0, 0.125, 1e-10, 1e-10);
 
         std::ofstream file("orbit_circle.txt");
 
@@ -205,7 +205,6 @@ int main(){
         return dz;
     };
 
-    // 🔴 Initial conditions (MEGET vigtige)
     pp::vector z0 = {
          0.4662036850,  0.4323657300,
          0.4662036850,  0.4323657300,
@@ -216,10 +215,8 @@ int main(){
          0.0,           0.0
     };
 
-    // 🔴 Integrér (små steps!)
     auto [ts, zs] = pp::driver(f, 0.0, 10.0, z0, 0.01, 1e-6, 1e-6);
 
-    // 🔴 Gem data
     std::ofstream file("threebody.txt");
 
     for(int i=0;i<ts.size();i++){

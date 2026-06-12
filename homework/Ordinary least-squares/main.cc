@@ -45,9 +45,10 @@ int main() {
     double dT = log(2)/(lambda*lambda) * dlambda;
 
     //Print aprameters
+    std::cout << "Fitted parameters: " << "\n";
     std::cout << "a = " << a << "\n";
     std::cout << "lambda = " << lambda << "\n";
-    std::cout << "Half life = " << T_half << " days\n" << "±" << dT << "\n";
+    std::cout << "Half life = " << T_half << " days\n" << "±" << dT << "\n\n";
 
     //Write to .txt files for plotting
     std::ofstream data("data.txt");
@@ -72,8 +73,21 @@ int main() {
     //Print difference
     std::cout << "Modern value = " << modern << " days\n";
     std::cout << "Difference = " << diff << " days\n";
-    std::cout << "Relative error = " << rel_error*100 << " %\n";
+    std::cout << "Relative error = " << rel_error*100 << " %\n\n";
     cov.print("Covariance matrix:");
 
+    std::cout << "\nParameter uncertainties:\n";
+    std::cout << "d(ln(a)) = " << dc0 << "\n";
+    std::cout << "d(lambda) = " << dc1 << "\n";
+
+    double sigma = diff/dT;
+
+    std::cout
+    << "The discrepancy is "
+    << diff
+    << " days, corresponding to about "
+    << sigma
+    << " sigma.\n"
+    << "This is more than 1 sigma, so no, it does not agree with the modern day value." << "\n";
     return 0;
 }

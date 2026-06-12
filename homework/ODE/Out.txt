@@ -1,0 +1,12 @@
+Test: u'' = -u
+Max error = 0.00298032
+
+Test: y' = y
+Max error = 0.239195
+
+Damped oscillator final amplitude ≈ 0.0520505
+
+Saved orbit_circle.txt
+Saved orbit_ellipse.txt
+Saved orbit_precession.txt
+Saved threebody.txt

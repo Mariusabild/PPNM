@@ -1,0 +1,19 @@
+Fitted parameters: 
+a = 142.404
+lambda = 0.170624
+Half life = 4.06242 days
+±0.170394
+
+Modern value = 3.66 days
+Difference = 0.402424 days
+Relative error = 10.9952 %
+
+Covariance matrix:
+   0.00125  -0.000197 
+ -0.000197   5.12e-05 
+
+Parameter uncertainties:
+d(ln(a)) = 0.0354019
+d(lambda) = 0.00715662
+The discrepancy is 0.402424 days, corresponding to about 2.36173 sigma.
+This is more than 1 sigma, so no, it does not agree with the modern day value.

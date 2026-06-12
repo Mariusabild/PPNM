@@ -1,0 +1,44 @@
+root for x^2-2 = 0, is:       1.42 
+expected root: (1.41421356)
+
+root for x+y-2 = 0 & x-y = 0 is:          1          1 
+expected root: (1,1)
+
+root for the rosenbock function is:          1          1 
+expected root: (1,1)
+
+root for Himmelblau gradient is:          3          2 
+expected root: (3,2)
+
+root for Himmelblau gradient from (-3,3) is:      -2.81       3.13 
+expected root: (-2.805118,3.131312)
+
+Ground state energy:       -0.5 
+expected energy: (-0.5)
+wavefunction written to hydrogen.data
+
+Convergence in rmax:
+rmax = 4   E0 = -0.483941
+rmax = 6   E0 = -0.499332
+rmax = 8   E0 = -0.5
+rmax = 10   E0 = -0.500045
+rmax = 12   E0 = -0.500039
+
+Convergence in rmin:
+rmin = 0.1   E0 = -0.501847
+rmin = 0.01   E0 = -0.5
+rmin = 0.001   E0 = -0.5
+rmin = 0.0001   E0 = -0.5
+rmin = 1e-05   E0 = -0.5
+
+Convergence in acc:
+acc = 0.1   E0 = -0.501582
+acc = 0.01   E0 = -0.5
+acc = 0.001   E0 = -0.5
+acc = 0.0001   E0 = -0.5
+
+Convergence in eps:
+eps = 0.1   E0 = -0.500897
+eps = 0.01   E0 = -0.5
+eps = 0.001   E0 = -0.5
+eps = 0.0001   E0 = -0.5

@@ -1,9 +1,10 @@
 CXXFLAGS += -Wall -Wextra -std=c++23 -O3
 
+all: main timing.png
+
 main: main.cc matrix.h qr.h
 	g++ $(CXXFLAGS) $< -o main
-
-all: timing.png
+	./main > Out.txt
 
 timing.png: out.times.data timing.gpi
 	gnuplot timing.gpi
@@ -17,7 +18,6 @@ out.times.data: timing
 
 timing: timing.cc matrix.h qr.h
 	g++ $(CXXFLAGS) $< -o timing
-
 
 .PHONY: clean
 clean:

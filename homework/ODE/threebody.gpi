@@ -9,4 +9,7 @@ set size ratio -1
 plot \
 "threebody.txt" using 1:2 w l title "body1", \
 "threebody.txt" using 3:4 w l title "body2", \
-"threebody.txt" using 5:6 w l title "body3"
+"threebody.txt" using 5:6 w l title "body3", \
+"threebody.txt" using 1:2 every ::0::0 w p pt 7 ps 2 title "start1", \
+"threebody.txt" using 3:4 every ::0::0 w p pt 7 ps 2 title "start2", \
+"threebody.txt" using 5:6 every ::0::0 w p pt 7 ps 2 title "start3"
