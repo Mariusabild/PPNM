@@ -1,0 +1,7 @@
+Mass = 125.415
+Gamma = -2.27139
+A = 7.54613
+Steps = 18
+Rosenbrock minimum = 0.999841 0.999681
+Steps = 5
+Himmelblau minimum = 3 2

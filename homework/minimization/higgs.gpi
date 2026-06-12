@@ -1,0 +1,9 @@
+set terminal pngcairo size 800,600
+set output "higgs.png"
+
+set xlabel "Energy [GeV]"
+set ylabel "Signal"
+
+plot \
+"data.txt" using 1:2:3 with yerrorbars title "data", \
+"fit.txt" using 1:2 with lines lw 2 title "Breit-Wigner fit"
