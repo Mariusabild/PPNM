@@ -19,31 +19,31 @@ int main() {
         }
     }
 
-    //print testmatrice
-    std::cout << "Testing QR-decomp" << "\n";
+    //print testmatrix
+    std::cout << "\n\n" << "Out.txt, testing implimentation..." << "\n\n";
+    std::cout << "Testing QR-decomp:" << "\n";
 
-    std::cout << "Generate a random test matrix (n should be greater than m, here n = 6, m = 3): " << "\n";
-    A.print("\n The generated test matrix: ");
+    std::cout << "Generate a random test matrix A (n should be greater than m, here n = 6, m = 3): " << "\n";
+    A.print("\n The generated test matrix A: ");
 
-    //print qr-decomponerede matrice
     pp::qr decomp(A);
     decomp.R.print("\n R matrix: ");
     //Check QQ^T = 1
-    std::cout << "R should be upper triangular. Inspect R." << "\n";
+    std::cout << "\nR should be upper triangular. This seems to be the case after multiple runs, since all elements under the diagonal is zero. Please inspect R as well." << "\n";
 
     pp::matrix B = decomp.Q.T()*decomp.Q;
     B.print("\n Q^T*Q: ");
-    std::cout << "Should be equal to the identity matrix. The off-diagonal terms upto machine precision 0. Inspect this." << "\n";
+    std::cout << "\nQ^T*Q Should be equal to the identity matrix, which it seems to be after multiple runs. Please inspect this as well. The off diagonal terms is zero, seen as machine epsilon." << "\n";
 
     //check QR = A
     pp::matrix C = decomp.Q * decomp.R;
     C.print("\n Check that Q*R = A: ");
 
-    std::cout << "The reconstructed matrix should match the original matrix A. Inspect the result." << "\n";
+    std::cout << "\nThe reconstructed matrix should match the original matrix A. Looking at the first print of A, this seems to be the case. Inspect the result as well." << "\n";
 
     /* TEST FOR SOLVE */
 
-    std::cout << "Test for solve" << "\n";
+    std::cout << "\nTest for solve:" << "\n";
     int k = 3;
     pp::matrix D(k,k);
 
@@ -72,23 +72,19 @@ int main() {
 
     v.print("\n Original b:");
 
-    std::cout << "Dx should match the original vector b. Inspect the result." << "\n";
+    std::cout << "\nDx should match the original vector b. Inspect the result." << "\n";
 
-
-    /* Test determinant
-    */
+    // Test determinant
 
     std::cout << "\nDeterminant of D: " << decomp2.det() << "\n";
-    std::cout
-<< "The determinant is calculated as the product of the diagonal elements of R.\n";
+    std::cout << "\nThe determinant is calculated as the product of the diagonal elements of R.\n";
 
-    /* Test inverse
-    */
-    std::cout << "Testing inverse" << "\n";
+    //Test inverse
+    std::cout << "\nTesting inverse" << "\n";
 
     pp::matrix invD = decomp2.inverse();
     (D * invD).print("\nD*D^{-1}:");
-    std::cout << "The result should equal the identity matrix up to machine precision. Inspect the result." << "\n";
+    std::cout << "The result should equal the identity matrix up to machine precision. Please inspect the result." << "\n";
 
-    std::cout << "For part C, check 'timing.png'. The fit is performed to a function proportional tio N^3. This is to ensure that execution time of QR-decomp of a N times N matrix is O(N^3). Please insepct " << "\n";
+    std::cout << "For part C, check 'timing.png'. The fit is performed to a function proportional tio N^3. This is to ensure that execution time of QR-decomp of a N times N matrix is O(N^3). The fit nicely matches the points. Please insepct " << "\n";
 }

@@ -25,7 +25,6 @@ int main(int argc, char** argv){
         }
     }
 
-    // DET VI MÅLER
     pp::qr decomp(A);
 
     return 0;

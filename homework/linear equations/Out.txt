@@ -1,7 +1,11 @@
-Testing QR-decomp
-Generate a random test matrix (n should be greater than m, here n = 6, m = 3): 
 
- The generated test matrix: 
+
+Out.txt, testing implimentation...
+
+Testing QR-decomp:
+Generate a random test matrix A (n should be greater than m, here n = 6, m = 3): 
+
+ The generated test matrix A: 
      0.797      0.183       0.78 
      0.597      0.446        0.1 
      0.459      0.334      0.143 
@@ -13,13 +17,15 @@ Generate a random test matrix (n should be greater than m, here n = 6, m = 3):
        1.7      0.577       1.27 
          0      0.623     -0.722 
          0          0      0.139 
-R should be upper triangular. Inspect R.
+
+R should be upper triangular. This seems to be the case after multiple runs, since all elements under the diagonal is zero. Please inspect R as well.
 
  Q^T*Q: 
          1   -2.5e-16  -1.99e-15 
   -2.5e-16          1  -6.11e-16 
  -1.99e-15  -6.11e-16          1 
-Should be equal to the identity matrix. The off-diagonal terms upto machine precision 0. Inspect this.
+
+Q^T*Q Should be equal to the identity matrix, which it seems to be after multiple runs. Please inspect this as well. The off diagonal terms is zero, seen as machine epsilon.
 
  Check that Q*R = A: 
      0.797      0.183       0.78 
@@ -28,8 +34,10 @@ Should be equal to the identity matrix. The off-diagonal terms upto machine prec
      0.651     0.0564      0.722 
      0.939   0.000779      0.992 
      0.617      0.612    0.00707 
-The reconstructed matrix should match the original matrix A. Inspect the result.
-Test for solve
+
+The reconstructed matrix should match the original matrix A. Looking at the first print of A, this seems to be the case. Inspect the result as well.
+
+Test for solve:
 
  Random generated matrix D, which needs to be a sqaure matrix:
     0.0231      0.525        0.4 
@@ -43,15 +51,18 @@ Test for solve
  Check Dx:     0.983      0.467       0.86 
 
  Original b:     0.983      0.467       0.86 
+
 Dx should match the original vector b. Inspect the result.
 
 Determinant of D: 0.0167691
+
 The determinant is calculated as the product of the diagonal elements of R.
+
 Testing inverse
 
 D*D^{-1}:
          1  -1.11e-16   4.86e-17 
   1.11e-16          1   1.14e-16 
   2.22e-16  -3.33e-16          1 
-The result should equal the identity matrix up to machine precision. Inspect the result.
-For part C, check 'timing.png' 
+The result should equal the identity matrix up to machine precision. Please inspect the result.
+For part C, check 'timing.png'. The fit is performed to a function proportional tio N^3. This is to ensure that execution time of QR-decomp of a N times N matrix is O(N^3). Please insepct 

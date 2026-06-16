@@ -1,6 +1,7 @@
 CXXFLAGS += -Wall -Wextra -std=c++23 -O3
 
 all: main timing.png
+	cat Out.txt
 
 main: main.cc matrix.h qr.h
 	g++ $(CXXFLAGS) $< -o main
@@ -21,6 +22,6 @@ timing: timing.cc matrix.h qr.h
 
 .PHONY: clean
 clean:
-	rm -f main timing out.times.data timing.png out err
+	rm -f Out.txt main timing out.times.data timing.png out err fit.log
 
 	
