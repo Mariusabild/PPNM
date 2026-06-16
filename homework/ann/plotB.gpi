@@ -1,0 +1,9 @@
+set terminal pngcairo size 1000,700
+set output "ann_derivatives.png"
+
+set title "ANN derivatives"
+
+plot \
+"fit.txt" using 1:2 w l title "F(x)", \
+"derivative.txt" using 1:2 w l title "F'(x)", \
+"second_derivative.txt" using 1:2 w l title "F''(x)"

@@ -1,0 +1,10 @@
+set terminal pngcairo size 800,600
+set output "ann.png"
+
+set title "Artificial Neural Network"
+set xlabel "x"
+set ylabel "y"
+
+plot \
+"data.txt" using 1:2 with points pt 7 title "data", \
+"fit.txt" using 1:2 with lines lw 2 title "ANN"

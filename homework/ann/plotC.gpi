@@ -1,0 +1,8 @@
+set terminal pngcairo size 800,600
+set output "ode.png"
+
+set title "ODE solution"
+
+plot \
+"ode_fit.txt" using 1:2 w l lw 2 title "ANN", \
+"ode_exact.txt" using 1:2 w l lw 2 title "sin(x)"

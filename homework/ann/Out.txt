@@ -1,0 +1,10 @@
+Training...
+Initial cost = 27.8187
+Final cost = 0.00524074
+F(0)   = 0.553959
+F'(0)  = 4.23916
+F''(0) = -16.1329
+A(0)   = -3.50464
+ Interpolation done
+Initial ODE cost = 42.0756
+Final ODE cost = 8.21351e-07
