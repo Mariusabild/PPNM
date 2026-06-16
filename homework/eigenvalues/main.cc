@@ -24,7 +24,7 @@ int main(int argc, char** argv){
 
     pp::matrix H(npoints,npoints);
 
-    // kinetic term
+    //kinetic term
     for(int i=0;i<npoints-1;i++){
         H(i,i)   = -2*(-0.5/dr/dr);
         H(i,i+1) =  1*(-0.5/dr/dr);
@@ -33,29 +33,17 @@ int main(int argc, char** argv){
 
     H(npoints-1,npoints-1) = -2*(-0.5/dr/dr);
 
-    // potential
+    //potential
     for(int i=0;i<npoints;i++)
         H(i,i) += -1/r[i];
 
-    // diagonalize hydrogen Hamiltonian
+    //diagonalize hydrogen Hamiltonian
     auto [e,Vhyd] = pp::jacobi(H);
 
-    // find ground state
+    //find ground state
     int k0 = 0;
     for(int k=1;k<e.size();k++)
         if(e[k] < e[k0]) k0 = k;
-
-    std::cout<<"Lowest hydrogen eigenvalues:\n";
-    for(int i=0;i<5;i++)
-        std::cout<<e[i]<<"\n";
-
-    std::cout << "\nComparison with exact hydrogen energies:\n";
-    std::cout << "n=1: numerical = " << e[0]
-          << ", exact = -0.5\n";
-    std::cout << "n=2: numerical = " << e[1]
-          << ", exact = -0.125\n";
-
-    std::cout<<"Ground state energy "<<e[k0]<<"\n";
 
     // -----------------------------
     // write wavefunction to file
@@ -96,16 +84,13 @@ int main(int argc, char** argv){
             A(j,i)=x;
         }
     }
+    std::cout << "\n\nRunning tests... " << "\n";
 
     A.print("\nRandom symmetric test matrix A:");
 
     auto [w,V] = pp::jacobi(A);
 
     V.print("\nDetermined eigenvectors:");
-
-    std::cout<<"\nEigenvalues:\n";
-    for(int i=0;i<w.size();i++)
-        std::cout<<w[i]<<"\n";
 
     pp::matrix D(n,n);
     for(int i=0;i<n;i++)
@@ -119,14 +104,35 @@ int main(int argc, char** argv){
     pp::matrix VVT  = V*VT;
 
     VTAV.print("\nV^TAV (should be diagonal):");
+    std::cout << "\nThis appears diagonal after multiple runs. Please inspect as well.\n";
+    std::cout<<"\nEigenvalues:\n";
+    for(int i=0;i<w.size();i++)
+        std::cout<<w[i]<<"\n";
     D.print("\nD (eigenvalues on diagonal):");
 
     VDVT.print("\nVDV^T (should equal original A):");
     A.print("\nOriginal A:");
+    std::cout << "\nThese seem to match, as expected. Please insepct as well.";
 
-    VTV.print("\nV^TV (should be identity):");
-    VVT.print("\nVV^T (should be identity):");
-    std::cout << "Notice the off-diagonal elements is zero within machine precision, as expected" << "\n";
-    std::cout << "For part B, check wave.png to see the numerically calculated wavefunctions, and the two excited states";
+    VTV.print("\nV^TV (should be identity matrix):");
+    VVT.print("\nVV^T (should be identity matrix):");
+    std::cout << "\nNotice the off-diagonal elements is zero within machine precision, as expected, thus we obtain the identity matrix." << "\n";
+    std::cout << "\nFor part B, check wave.png to see the numerically calculated eigenstates of the s-wave states, and the two excited states";
+    std::cout << "\nAlso notice that the numercial ground state and exact ground state match in form, but does not lie on top of each other exactly.";
+
+    std::cout<<"\nLowest hydrogen eigenvalues:\n";
+    for(int i=0;i<5;i++)
+        std::cout<<e[i]<<"\n";
+
+    std::cout << "\nComparison with exact hydrogen energies:\n";
+    std::cout << "n=1: numerical = " << e[0]
+          << ", exact = -0.5\n";
+    std::cout << "n=2: numerical = " << e[1]
+          << ", exact = -0.125\n";
+    std::cout << "As seen, these seem to match decently well." << "\n";
+
+    std::cout<<"Ground state energy "<<e[k0]<<"\n";
+
+    std::cout << "Please see dr_convergence.png and rmax_convergence.png for the convergence part of part B. It can be seen that as dr decreases, the numerical solution approaches the exact energy E_0 = -0.5, and as r_max increases, the numerical solution aproaches -0,5 as well. However, the biggest difference occour between r_max = 5 and r_max = 7." << "\n";
     return 0;
 }

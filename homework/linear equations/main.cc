@@ -84,7 +84,7 @@ int main() {
 
     pp::matrix invD = decomp2.inverse();
     (D * invD).print("\nD*D^{-1}:");
-    std::cout << "The result should equal the identity matrix up to machine precision. Please inspect the result." << "\n";
+    std::cout << "The result should equal the identity matrix up to machine precision, which it seems to be. Please inspect the result." << "\n";
 
     std::cout << "For part C, check 'timing.png'. The fit is performed to a function proportional tio N^3. This is to ensure that execution time of QR-decomp of a N times N matrix is O(N^3). The fit nicely matches the points. Please insepct " << "\n";
 }

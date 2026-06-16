@@ -64,5 +64,5 @@ D*D^{-1}:
          1  -1.11e-16   4.86e-17 
   1.11e-16          1   1.14e-16 
   2.22e-16  -3.33e-16          1 
-The result should equal the identity matrix up to machine precision. Please inspect the result.
-For part C, check 'timing.png'. The fit is performed to a function proportional tio N^3. This is to ensure that execution time of QR-decomp of a N times N matrix is O(N^3). Please insepct 
+The result should equal the identity matrix up to machine precision, which it seems to be. Please inspect the result.
+For part C, check 'timing.png'. The fit is performed to a function proportional tio N^3. This is to ensure that execution time of QR-decomp of a N times N matrix is O(N^3). The fit nicely matches the points. Please insepct 

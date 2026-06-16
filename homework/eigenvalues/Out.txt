@@ -1,14 +1,6 @@
-Lowest hydrogen eigenvalues:
--0.481455
--0.111178
-0.0909839
-0.396147
-0.796809
 
-Comparison with exact hydrogen energies:
-n=1: numerical = -0.481455, exact = -0.5
-n=2: numerical = -0.111178, exact = -0.125
-Ground state energy -0.481455
+
+Running tests... 
 
 Random symmetric test matrix A:
      0.797      0.183       0.78      0.597 
@@ -22,17 +14,19 @@ Determined eigenvectors:
      -0.68      0.365      0.471      0.427 
     -0.349     -0.586     -0.518      0.517 
 
-Eigenvalues:
--0.335551
-0.0970701
-0.647389
-1.81806
-
 V^TAV (should be diagonal):
     -0.336   1.46e-15   1.25e-16   1.11e-16 
   1.51e-15     0.0971  -3.12e-17  -1.39e-16 
    1.8e-16  -2.78e-17      0.647   4.19e-15 
   1.11e-16  -1.11e-16   4.11e-15       1.82 
+
+This appears diagonal after multiple runs. Please inspect as well.
+
+Eigenvalues:
+-0.335551
+0.0970701
+0.647389
+1.81806
 
 D (eigenvalues on diagonal):
     -0.336          0          0          0 
@@ -52,16 +46,33 @@ Original A:
       0.78        0.1      0.334      0.143 
      0.597      0.459      0.143      0.651 
 
-V^TV (should be identity):
+These seem to match, as expected. Please insepct as well.
+V^TV (should be identity matrix):
          1    2.5e-16  -2.78e-17  -1.94e-16 
    2.5e-16          1  -1.11e-16  -2.22e-16 
  -2.78e-17  -1.11e-16          1   1.11e-16 
  -1.94e-16  -2.22e-16   1.11e-16          1 
 
-VV^T (should be identity):
+VV^T (should be identity matrix):
          1   2.78e-17          0   2.22e-16 
   2.78e-17          1   1.39e-16  -6.11e-16 
          0   1.39e-16          1   3.61e-16 
   2.22e-16  -6.11e-16   3.61e-16          1 
-Notice the off-diagonal elements is zero within machine precision, as expected
-For part B, check wave.png to see the numerically calculated wavefunctions, and the two excited states
+
+Notice the off-diagonal elements is zero within machine precision, as expected, thus we obtain the identity matrix.
+
+For part B, check wave.png to see the numerically calculated eigenstates of the s-wave states, and the two excited states
+Also notice that the numercial ground state and exact ground state match in form, but does not lie on top of each other exactly.
+Lowest hydrogen eigenvalues:
+-0.481455
+-0.111178
+0.0909839
+0.396147
+0.796809
+
+Comparison with exact hydrogen energies:
+n=1: numerical = -0.481455, exact = -0.5
+n=2: numerical = -0.111178, exact = -0.125
+As seen, these seem to match decently well.
+Ground state energy -0.481455
+Please see dr_convergence.png and rmax_convergence.png for the convergence part of part B. It can be seen that as dr decreases, the numerical solution approaches the exact energy E_0 = -0.5, and as r_max increases, the numerical solution aproaches -0,5 as well. However, the biggest difference occour between r_max = 5 and r_max = 7.

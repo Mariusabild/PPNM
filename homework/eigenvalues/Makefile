@@ -5,6 +5,7 @@ rmax = 10
 dr = 0.4
 
 all: main wave.dat
+	cat Out.txt
 
 # compile program
 main: main.cc matrix.h jacobi.h
@@ -30,7 +31,6 @@ rmax.dat: main
 		./main -rmax $$r -dr 0.3 | grep "Ground state energy" | awk '{print $$4}' | xargs printf "$$r %s\n" >> rmax.dat ; \
 	done
 
-
 # plots
 plot: wave.dat dr.dat rmax.dat
 	gnuplot wave.gnuplot
@@ -39,7 +39,6 @@ plot: wave.dat dr.dat rmax.dat
 # run everything
 all: plot
 
-
 .PHONY: clean
 clean:
-	rm -f main wave.dat dr.dat rmax.dat *.png
+	rm -f main wave.dat dr.dat rmax.dat *.png Out.txt
