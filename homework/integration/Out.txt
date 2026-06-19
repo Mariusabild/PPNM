@@ -1,0 +1,43 @@
+Analytic: ∫dx √(x) = 2/3 from 0 to 1 |Numerical integrator 0.666954
+Analytic: ∫dx 1/√(x) = 2 from 0 to 1 |Numerical integrator 1.99996
+Analytic: ∫dx √(1-x²) = π/4 from 0 to 1 |Numerical integrator 0.785812
+Analytic: ∫dx ln(x)/√(x) = -4 from 0 to1 |Numerical integrator -3.99992
+
+=== Accuracy check ===
+sqrt(x): error = 1.30186e-08
+1/sqrt(x): error = 1.05084e-09
+sqrt(1-x^2): error = 7.18112e-09
+log(x)/sqrt(x): error = 5.86947e-10
+
+Known value erf(1) = 0.842701
+Calculated value erf(1) = 0.842701
+Thus the error is = 1.2429e-09
+Please check erf_curve.png for a plot of the error function.
+======== 1/sqrt(x)========
+
+ Normal integrator: 
+Result: 1.99996 calls: 8572
+
+ Clenshaw-Curtis: 
+Result: 2 calls: 352
+
+======== log(x)/sqrt(x)========
+
+ Normal integrator: 
+Result: -3.99991 calls: 416
+
+ Clenshaw-Curtis: 
+Result: -3.99999 calls: 1880
+A test vs scipy.quad has been run on the function f(x)=log(x)/sqrt(x), which yielded: 
+Result: -4.000000000000085, Calls: 315
+Thus we can see, that for some cases, the CC integrator is best, for others the normal one is
+
+Test with infinite integrals wewritten: 
+∫dx e^(-x)^2 from -infinity to infinity = 1.77245 with calls: 1128
+∫dx e^(-x) from 0 to infinity = 1 with calls: 540
+∫dx e^(x) from -infinity to 0 = 1 with calls: 540
+
+===Comparison with sicpy integrate: 
+exp(-x^2): Result: 1.7724538509055159 Calls: 270
+exp(-x):Result: 1.0000000000000002 Calls: 135
+exp(x): Result: 1.0000000000000002 Calls: 135

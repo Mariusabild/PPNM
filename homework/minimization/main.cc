@@ -146,7 +146,7 @@ pp::vector h_c =
     );
 
 std::cout
-    << "Part A/C: Comparison\n\n"
+    << "Comibned Part A/C: Comparison, with the steps given above for the central and forward difference methods.\n\n"
 
     << "Rosenbrock\n"
     << "Forward difference : "

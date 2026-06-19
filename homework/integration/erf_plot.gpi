@@ -1,0 +1,7 @@
+set terminal pngcairo
+set output "erf_curve.png"
+
+set xlabel "z"
+set ylabel "erf(z)"
+
+plot "erf_curve.txt" using 1:2 with lines title "Numerical erf"

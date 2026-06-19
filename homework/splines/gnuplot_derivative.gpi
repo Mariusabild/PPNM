@@ -1,0 +1,10 @@
+set terminal pngcairo size 800,600
+set output "derivative.png"
+
+set xlabel "x"
+set ylabel "y"
+set title "Quadratic spline derivative"
+
+plot \
+"data_qspline.txt" using 1:5 with lines title "qspline derivative", \
+"data_qspline.txt" using 1:6 with lines title "-sin(x)"

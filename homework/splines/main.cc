@@ -6,6 +6,8 @@
 
 int main(){
 
+    std::cout << "For part A, please inspect linear_spline.png. Here we see the expected behaviour, the spline intercepts the points exactly linearly." << "\n\n";
+
     // ---------- TESTS (for opgave B) ----------
     std::vector<double> x_test = {1,2,3,4,5};
 
@@ -41,7 +43,7 @@ int main(){
                   << " b=" << s_quad.b[i] 
                   << " c=" << s_quad.c[i] << "\n";
     }
-
+    std::cout << "\nThe obtained coefficients match the analytical ones." << "\n";
     // ---------- DATA (cos(x)) ----------
     std::vector<double> x;
     std::vector<double> y;
@@ -69,11 +71,14 @@ int main(){
     std::ofstream file2("data_qspline.txt");
 
     for(double z = 0; z <= 9; z += 0.01){
-        file2 << z << " "
-              << cos(z) << " "
-              << s.eval(z) << " "
-              << s.integ(z) << "\n";
-    }
+    file2 << z << " "
+          << cos(z) << " "
+          << s.eval(z) << " "
+          << s.integ(z) << " "
+          << s.deriv(z) << " "
+          << -sin(z)
+          << "\n";
+}
 
     file2.close();
 
@@ -88,5 +93,8 @@ int main(){
     }
 
     file3.close();
+
+    std::cout << "For part B, please inspect, qspline.png and derivative.png." << "\n";
+    std::cout << "For part C, please inspect cubic_compare.png, and functional.png." << "\n";
     return 0;
 }

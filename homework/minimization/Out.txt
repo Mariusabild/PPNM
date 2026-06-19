@@ -7,7 +7,7 @@ Steps = 18
 Central steps = 19
 Steps = 5
 Central steps = 5
-Part A/C: Comparison
+Comibned Part A/C: Comparison, with the steps given above for the central and forward difference methods.
 
 Rosenbrock
 Forward difference : 0.999841 0.999681

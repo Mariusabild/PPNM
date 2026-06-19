@@ -7,6 +7,7 @@ main: main.cc
 	gnuplot plotA.gpi
 	gnuplot plotB.gpi
 	gnuplot plotC.gpi
+	gnuplot antiderivative.gpi
 	cat Out.txt
 
 .PHONY:clean

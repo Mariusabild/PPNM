@@ -110,6 +110,11 @@ int main(){
     pp::vector root_himmel = pp::newton(himmelblau_grad, start_himmel, 1e-2,1e-3,10000);
     pp::vector start_himmel2 = {-3,3};
     pp::vector root_himmel2 = pp::newton(himmelblau_grad,start_himmel2, 1e-2,1e-3, 10000);
+    pp::vector start_himmel3 = {-4,-4};
+    pp::vector root_himmel3 = pp::newton(himmelblau_grad,start_himmel3,1e-2,1e-3,10000);
+
+    pp::vector start_himmel4 = {4,-2};
+    pp::vector root_himmel4 = pp::newton(himmelblau_grad,start_himmel4,1e-2,1e-3,10000);
 
     std::cout << "Part A: " << "\n\n";
     std::cout << "Some simple tests: " << "\n";
@@ -120,10 +125,15 @@ int main(){
     std::cout << "Test for rosenbock and Himmelblau functions: " << "\n";
     root_rosen.print("root for the rosenbock function is: ");
     std::cout << "expected root: (1,1)\n\n";
-    root_himmel.print("root for Himmelblau gradient is: ");
+    root_himmel.print("root for Himmelblau gradient from (3,2) is: ");
     std::cout << "expected root: (3,2)\n\n";
     root_himmel2.print("root for Himmelblau gradient from (-3,3) is: ");
     std::cout << "expected root: (-2.805118,3.131312)\n\n";
+    root_himmel3.print("root for Himmelblau gradient from (-4,-4) is: ");
+    std::cout << "expected root: (-3.779310,-3.283186)\n\n";
+
+    root_himmel4.print("root for Himmelblau gradient from (4,-2) is: ");
+    std::cout << "expected root: (3.584428,-1.848126)\n\n";
 
     //part B
     /*

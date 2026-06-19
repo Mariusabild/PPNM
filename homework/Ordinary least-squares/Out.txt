@@ -1,4 +1,6 @@
-Fitted parameters: 
+Please see decay.png, which shows a fit matching nicely with the data points.
+
+The fitted parameters are: 
 a = 142.404
 lambda = 0.170624
 Half life = 4.06242 days

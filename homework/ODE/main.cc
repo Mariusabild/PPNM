@@ -9,6 +9,8 @@ int main(){
     // PART A TESTS
     // -------------------------------
 
+    std::cout << "Tests... " << "\n\n";
+
     // Test 1: u'' = -u
     {
         auto f = [](double x, pp::vector y){
@@ -53,31 +55,40 @@ int main(){
         std::cout << "Max error = " << max_error << "\n\n";
     }
 
-    // Damped oscillator (SciPy-style)
-    {
-        double gamma = 0.25;
+    std::cout << "SciPy odeint example can be seen in damped_oscillator.png" << "\n";
+// SciPy odeint example
+{
+    double b = 0.25;
+    double c = 5.0;
 
-        auto f = [gamma](double t, pp::vector y){
-            return pp::vector{
-                y[1],
-                -y[0] - gamma*y[1]
-            };
+    auto f = [b,c](double t, pp::vector y){
+        return pp::vector{
+            y[1],
+            -b*y[1] - c*std::sin(y[0])
         };
+    };
 
-        pp::vector y0 = {1.0, 0.0};
+    pp::vector y0 = {M_PI-0.1,0.0};
 
-        auto [ts, ys] = pp::driver(f, 0.0, 20.0, y0);
+    auto [ts,ys] = pp::driver(f,0.0,10.0,y0);
 
-        std::cout << "Damped oscillator final amplitude ≈ "
-                  << std::abs(ys.back()[0]) << "\n\n";
+    std::ofstream file("damped_oscillator.txt");
+
+    for(size_t i=0;i<ts.size();i++){
+        file << ts[i] << " "
+             << ys[i][0] << " "
+             << ys[i][1] << "\n";
     }
+
+}
 
     // -------------------------------
     // PART B: ORBITS
     // -------------------------------
 
-    // Case 1: Circular orbit (ε = 0)
+    // Case 1
     {
+        //Notice we have set a small pertubation here
         double eps = 10e-6;
 
         auto f = [eps](double phi, pp::vector y){
@@ -98,10 +109,9 @@ int main(){
             file << phis[i] << " " << ys[i][0] << "\n";
         }
 
-        std::cout << "Saved orbit_circle.txt\n";
     }
 
-    // Case 2: Elliptical orbit (ε = 0)
+    // Case 2
     {
         double eps = 0.0;
 
@@ -122,10 +132,9 @@ int main(){
             file << phis[i] << " " << ys[i][0] << "\n";
         }
 
-        std::cout << "Saved orbit_ellipse.txt\n";
     }
 
-    // Case 3: Relativistic precession (ε ≈ 0.01)
+    // Case 3
     {
         double eps = 0.01;
 
@@ -146,7 +155,6 @@ int main(){
             file << phis[i] << " " << ys[i][0] << "\n";
         }
 
-        std::cout << "Saved orbit_precession.txt\n";
     }
 
 
@@ -227,8 +235,9 @@ int main(){
 
     file.close();
 
-    std::cout << "Saved threebody.txt\n";
 }
+
+    std::cout << "Please check orbit.png, and threebody.png for part B and C" << "\n";
 
     return 0;
 }

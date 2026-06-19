@@ -1,0 +1,10 @@
+set terminal pngcairo size 800,600
+set output "damped_oscillator.png"
+
+set title "Damped pendulum (SciPy odeint example)"
+set xlabel "t"
+set key right
+
+plot \
+"damped_oscillator.txt" using 1:2 with lines lw 2 title "theta(t)", \
+"damped_oscillator.txt" using 1:3 with lines lw 2 title "omega(t)"

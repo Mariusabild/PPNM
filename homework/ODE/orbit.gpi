@@ -1,5 +1,5 @@
 set terminal pngcairo size 800,600
-set output "plot.png"
+set output "orbit.png"
 
 set title "Orbital motion"
 set xlabel "x"

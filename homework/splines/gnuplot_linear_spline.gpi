@@ -1,5 +1,5 @@
 set terminal pngcairo size 800,600
-set output "plot.png"
+set output "linear_spline.png"
 
 set title "Linear spline interpolation"
 set xlabel "x"

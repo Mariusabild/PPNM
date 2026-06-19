@@ -1,12 +1,18 @@
 CXXFLAGS += -std=c++23 -O
 
+all: main plot
+
 main: main.cc
 	g++ $(CXXFLAGS) $< -o main
 	./main > Out.txt
-	gnuplot plotsettings.gpi
+	cat Out.txt
+
+plot: orbit.gpi threebody.gpi damped_oscillator.gpi
+	gnuplot orbit.gpi
 	gnuplot threebody.gpi
+	gnuplot damped_oscillator.gpi
 
 .PHONY:clean
 clean:
-	rm main plot.png orbit_circle.txt orbit_ellipse.txt orbit_precession.txt threebodyplot.png
+	rm main *.png orbit_circle.txt orbit_ellipse.txt orbit_precession.txt threebodyplot.png Out.txt
 	

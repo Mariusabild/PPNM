@@ -55,9 +55,9 @@ std::tuple<vector,matrix> jacobi(matrix A){
                 if(std::abs(new_apq) < std::abs(apq)){
                     changed = true;
 
-                    timesJ(A,p,q,theta);   // A ← A*J
-                    Jtimes(A,p,q,-theta);  // A ← Jᵀ*A
-                    timesJ(V,p,q,theta);   // V ← V*J
+                    timesJ(A,p,q,theta);   
+                    Jtimes(A,p,q,-theta);  
+                    timesJ(V,p,q,theta); 
                 }
             }
         }

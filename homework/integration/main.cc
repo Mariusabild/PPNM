@@ -36,12 +36,44 @@ int main(){
     std::cout << "Analytic: ∫dx √(1-x²) = π/4 from 0 to 1 |" << "Numerical integrator " << integrate(func3, 0,1) << "\n";
     std::cout << "Analytic: ∫dx ln(x)/√(x) = -4 from 0 to1 |" << "Numerical integrator " << integrate(func4, 0,1) << "\n";
 
+    double acc_test = 1e-6;
+double eps_test = 1e-6;
+
+double r1 = integrate(func1,0,1,acc_test,eps_test);
+double r2 = integrate(func2,0,1,acc_test,eps_test);
+double r3 = integrate(func3,0,1,acc_test,eps_test);
+double r4 = integrate(func4,0,1,acc_test,eps_test);
+
+std::cout << "\n=== Accuracy check ===\n";
+
+std::cout << "sqrt(x): error = "
+          << std::abs(r1 - 2.0/3.0)
+          << "\n";
+
+std::cout << "1/sqrt(x): error = "
+          << std::abs(r2 - 2.0)
+          << "\n";
+
+std::cout << "sqrt(1-x^2): error = "
+          << std::abs(r3 - M_PI/4.0)
+          << "\n";
+
+std::cout << "log(x)/sqrt(x): error = "
+          << std::abs(r4 + 4.0)
+          << "\n\n";
+
     double known = 0.84270079294971486934;
     double calc = errorfunction(1.0);
 
     std::cout << "Known value erf(1) = " << known << "\n";
     std::cout << "Calculated value erf(1) = " << calc << "\n";
     std::cout << "Thus the error is = " << std::abs(known - calc) << "\n";
+
+    std::ofstream erfplot("erf_curve.txt");
+
+for(double z=-3; z<=3; z+=0.1){
+    erfplot << z << " " << errorfunction(z) << "\n";
+}
 
     std::ofstream out("erf_data.txt");
 
@@ -55,6 +87,7 @@ int main(){
     } 
     
     out.close();
+    std::cout << "Please check erf_curve.png for a plot of the error function." << "\n";
 
     /*
     PART B: 

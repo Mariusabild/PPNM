@@ -32,7 +32,7 @@ namespace pp {
     pp::vector c = decomposition.solve(b);
     pp::matrix R = decomposition.R;
 
-    pp::qr Rqr(R);              // QR af R
+    pp::qr Rqr(R);             
     pp::matrix Rinv = Rqr.inverse();
 
     pp::matrix cov = Rinv * Rinv.T();

@@ -50,6 +50,8 @@ int main(){
     std::cout << "Calculated area exp(-(x^2+y^2)) x and y from 0 to 1 = " << result_exp << ", using " << N << " sampling points" << "\n";
     std::cout << "Nummerical value of area exp(-(x^2+y^2)) x and y from 0 to 1 by looking at table " <<  theoretical_result_exp << "\n \n";
 
+    std::cout << "Looking at error.png, one can see the actual error follows 1/(sqrt(N)) behaviour, as expected." << "\n";
+
     //Plot
     for(int N = 10; N <= max_points; N*= 2){
         lcg rnd3(1234);
@@ -198,8 +200,6 @@ std::cout << "Actual error = "
 std::cout << "Estimated error = "
           << quasi_est/(M_PI*M_PI*M_PI)
           << "\n";
-
-    
 
     std::cout << "\nStratified sampling:\n";
 

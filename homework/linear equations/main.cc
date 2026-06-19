@@ -3,6 +3,12 @@
 #include <iostream>
 #include <random>
 
+/*
+AI use: AI has assisted with tasks such as debugging, helping to translate algorithms and pseudocode from lecture pdf notes into C++ syntax, and help design tests.
+
+Since I made many of the homeworks before it was stated that we should mark the AI-generated code, this is not possible. In general, AI has been used as a tool in all project files.
+*/
+
 int main() {
 
     std::mt19937 rng(42); // random generator
@@ -87,4 +93,5 @@ int main() {
     std::cout << "The result should equal the identity matrix up to machine precision, which it seems to be. Please inspect the result." << "\n";
 
     std::cout << "For part C, check 'timing.png'. The fit is performed to a function proportional tio N^3. This is to ensure that execution time of QR-decomp of a N times N matrix is O(N^3). The fit nicely matches the points. Please insepct " << "\n";
+    return 0;
 }

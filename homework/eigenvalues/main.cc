@@ -9,7 +9,7 @@
 int main(int argc, char** argv){
 
     double rmax = 10;
-    double dr = 0.3;
+    double dr = 0.05;
 
     for(int i=1;i<argc;i++){
         if(strcmp(argv[i],"-rmax")==0) rmax = atof(argv[++i]);
@@ -65,7 +65,6 @@ int main(int argc, char** argv){
     }
 
     wave.close();
-
     
     // --------------------------------------------------
     // Jacobi test 

@@ -11,11 +11,17 @@ Test for rosenbock and Himmelblau functions:
 root for the rosenbock function is:          1          1 
 expected root: (1,1)
 
-root for Himmelblau gradient is:          3          2 
+root for Himmelblau gradient from (3,2) is:          3          2 
 expected root: (3,2)
 
 root for Himmelblau gradient from (-3,3) is:      -2.81       3.13 
 expected root: (-2.805118,3.131312)
+
+root for Himmelblau gradient from (-4,-4) is:      -3.78      -3.28 
+expected root: (-3.779310,-3.283186)
+
+root for Himmelblau gradient from (4,-2) is:       3.58      -1.85 
+expected root: (3.584428,-1.848126)
 
 Part B:
 

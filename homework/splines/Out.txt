@@ -1,3 +1,5 @@
+For part A, please inspect linear_spline.png. Here we see the expected behaviour, the spline intercepts the points exactly linearly.
+
 Test y=1:
 i=0 b=0 c=0
 i=1 b=0 c=0
@@ -15,3 +17,7 @@ i=0 b=2 c=1
 i=1 b=4 c=1
 i=2 b=6 c=1
 i=3 b=8 c=1
+
+The obtained coefficients match the analytical ones.
+For part B, please inspect, qspline.png and derivative.png.
+For part C, please inspect cubic_compare.png, and functional.png.

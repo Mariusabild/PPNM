@@ -24,12 +24,10 @@ inline double dot(const vector& a, const vector& b) {
     return dotproduct;
 }
 
+//page 3 lineq.pdf
 inline qr::qr(const matrix& A) {
-
     Q = A;
-
     int m = A.size2();
-
     R = matrix(m,m);
 
     for(int i=0;i<m;i++){
@@ -60,7 +58,7 @@ inline vector qr::solve(const vector& b) const {
 
     return x;
 }
-
+//Determinant taken as product of diagonal elements
 inline double qr::det() const {
     double determinant = 1;
 
@@ -72,11 +70,11 @@ inline double qr::det() const {
     return determinant;
 
 }
+//Using method sec 1.5 page 10 lineq.pdf
 inline matrix qr::inverse() const {
     int n = R.size1();
 
     matrix inv(n,n);
-
     
     for(int i = 0; i < n; i++) {
         vector e(n);

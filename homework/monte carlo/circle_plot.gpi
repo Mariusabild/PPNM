@@ -1,5 +1,5 @@
 set terminal png
-set output "plot.png"
+set output "error.png"
 set xlabel "Number of sampling points"
 set ylabel "Error"
 set logscale x

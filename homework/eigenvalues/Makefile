@@ -35,7 +35,6 @@ rmax.dat: main
 plot: wave.dat dr.dat rmax.dat
 	gnuplot wave.gnuplot
 
-
 # run everything
 all: plot
 

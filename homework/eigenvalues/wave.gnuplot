@@ -15,7 +15,7 @@ set grid
 plot "wave.dat" using 1:2 with lines lw 2 title "n=1 numerical", \
      "wave.dat" using 1:3 with lines lw 2 title "n=2 numerical", \
      "wave.dat" using 1:4 with lines lw 2 title "n=3 numerical", \
-     x*exp(-x) with lines lw 2 title "n=1 exact"
+     2*x*exp(-x) with lines lw 2 title "n=1 exact"
      
 # -------------------------
 # dr convergence

@@ -44,8 +44,10 @@ int main() {
     double dlambda = dc1;
     double dT = log(2)/(lambda*lambda) * dlambda;
 
+    std::cout << "Please see decay.png, which shows a fit matching nicely with the data points." << "\n\n";
+
     //Print aprameters
-    std::cout << "Fitted parameters: " << "\n";
+    std::cout << "The fitted parameters are: " << "\n";
     std::cout << "a = " << a << "\n";
     std::cout << "lambda = " << lambda << "\n";
     std::cout << "Half life = " << T_half << " days\n" << "±" << dT << "\n\n";
