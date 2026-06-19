@@ -1,0 +1,32 @@
+Calculated area circle = 0.7853, using 100000 sampling points.
+Actual area circle = 0.785398
+ 
+Calculated area exp(-(x^2+y^2)) x and y from 0 to 1 = 0.558024, using 100000 sampling points
+Nummerical value of area exp(-(x^2+y^2)) x and y from 0 to 1 by looking at table 0.557746
+ 
+Looking at error.png, one can see the actual error follows 1/(sqrt(N)) behaviour, as expected.
+Also check quasi_plot.png
+Calculated volume ellipsoid = 25.0618, using 100000 sampling points
+Theoretical volume of ellipsoid 25.1327
+
+Quasi-random test:
+Circle area (quasi) = 0.78552
+Estimated error = 0.00043
+Actual error = 0.000121837
+
+Singular integral:
+LCG = 1.38682
+Actual error = 0.00638514
+
+std::mt19937 = 1.40835
+Actual error = 0.0151477
+
+Quasi-random = 1.39065
+Actual error = 0.00255881
+Estimated error = 0.0118784
+We see that the quasi-radom sequence yields the lowest acutual error in this case.
+
+Stratified sampling:
+Circle area = 0.785582
+Actual error = 0.000183538
+Estimated error = 0.000358839

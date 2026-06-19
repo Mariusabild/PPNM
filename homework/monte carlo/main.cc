@@ -6,6 +6,10 @@
 #include <fstream>
 #include <random>
 
+/*
+AI use: AI has assisted with tasks such as debugging, helping to translate algorithms and pseudocode from lecture pdf notes into C++ syntax, and help design tests.
+Since I made many of the homeworks before it was stated that we should mark the AI-generated code, this is not possible. In general, AI has been used as a tool in all project files.
+*/
 
 int main(){
 
@@ -52,6 +56,8 @@ int main(){
 
     std::cout << "Looking at error.png, one can see the actual error follows 1/(sqrt(N)) behaviour, as expected." << "\n";
 
+    std::cout << "Also check quasi_plot.png" << "\n";
+
     //Plot
     for(int N = 10; N <= max_points; N*= 2){
         lcg rnd3(1234);
@@ -91,140 +97,82 @@ int main(){
 
     std::cout << "\nQuasi-random test:\n";
 
-auto[q_circle,q_error] =
-    quasimc(f_circle,a,b,100000);
+    auto[q_circle,q_error] = quasimc(f_circle,a,b,100000);
 
-std::cout << "Circle area (quasi) = "
-          << q_circle
-          << "\n";
+    std::cout << "Circle area (quasi) = " << q_circle << "\n";
 
-std::cout << "Estimated error = "
-          << q_error
-          << "\n";
+    std::cout << "Estimated error = " << q_error << "\n";
 
-std::cout << "Actual error = "
-          << std::abs(q_circle-theoretical_result_circle)
-          << "\n";
+    std::cout << "Actual error = " << std::abs(q_circle-theoretical_result_circle) << "\n";
 
-std::ofstream quasi_data("quasi_circle_data.txt");
+    std::ofstream quasi_data("quasi_circle_data.txt");
 
-for(int N=100; N<=100000; N*=2){
+    for(int N=100; N<=100000; N*=2){
 
-    lcg rnd(1234);
+        lcg rnd(1234);
 
-    auto [plain_result,plain_error] =
-        plainmc(f_circle,a,b,N,rnd);
+    auto [plain_result,plain_error] = plainmc(f_circle,a,b,N,rnd);
 
-    auto [quasi_result,quasi_err] =
-        quasimc(f_circle,a,b,N);
+    auto [quasi_result,quasi_err] = quasimc(f_circle,a,b,N);
 
-    double actual_plain =
-        std::abs(plain_result-theoretical_result_circle);
+    double actual_plain = std::abs(plain_result-theoretical_result_circle);
 
-    double actual_quasi =
-        std::abs(quasi_result-theoretical_result_circle);
+    double actual_quasi = std::abs(quasi_result-theoretical_result_circle);
 
-    quasi_data
-        << N << " "
-        << actual_plain << " "
-        << actual_quasi << "\n";
+    quasi_data << N << " " << actual_plain << " " << actual_quasi << "\n";
 }
 
-quasi_data.close();
+    quasi_data.close();
 
-std::vector<double> a_sing = {0,0,0};
-std::vector<double> b_sing = {M_PI,M_PI,M_PI};
+    std::vector<double> a_sing = {0,0,0};
+    std::vector<double> b_sing = {M_PI,M_PI,M_PI};
 
-std::cout << "\nSingular integral:\n";
+    std::cout << "\nSingular integral:\n";
 
-double exact =
-1.393203929685676859;
+    double exact = 1.393203929685676859;
 
-lcg rnd6(1234);
+    lcg rnd6(1234);
 
-auto [lcg_result,lcg_error] =
-    plainmc(
-        f_singular,
-        a_sing,
-        b_sing,
-        1000000,
-        rnd6
-    );
+    auto [lcg_result,lcg_error] =
+        plainmc(f_singular, a_sing, b_sing, 1000000, rnd6);
 
-lcg_result /= (M_PI*M_PI*M_PI);
+    lcg_result /= (M_PI*M_PI*M_PI);
 
-std::cout << "LCG          = "
-          << lcg_result
-          << "\n";
+    std::cout << "LCG = "<< lcg_result << "\n";
 
-std::cout << "Actual error = "
-          << std::abs(lcg_result-exact)
-          << "\n";
+    std::cout << "Actual error = " << std::abs(lcg_result-exact) << "\n";
 
-          auto [std_result,std_error] =
-    plainmc_std(
-        f_singular,
-        a_sing,
-        b_sing,
-        1000000
-    );
+        auto [std_result,std_error] = plainmc_std( f_singular, a_sing, b_sing, 1000000);
 
-std_result /= (M_PI*M_PI*M_PI);
+    std_result /= (M_PI*M_PI*M_PI);
 
-std::cout << "\nstd::mt19937 = "
-          << std_result
-          << "\n";
+    std::cout << "\nstd::mt19937 = " << std_result << "\n";
 
-std::cout << "Actual error = "
-          << std::abs(std_result-exact)
-          << "\n";
+    std::cout << "Actual error = " << std::abs(std_result-exact) << "\n";
 
-          auto [quasi_result,quasi_est] =
-    quasimc(
-        f_singular,
-        a_sing,
-        b_sing,
-        1000000
-    );
+    auto [quasi_result,quasi_est] = quasimc( f_singular, a_sing, b_sing, 1000000);
 
-quasi_result /= (M_PI*M_PI*M_PI);
+    quasi_result /= (M_PI*M_PI*M_PI);
 
-std::cout << "\nQuasi-random = "
-          << quasi_result
-          << "\n";
+    std::cout << "\nQuasi-random = " << quasi_result << "\n";
 
-std::cout << "Actual error = "
-          << std::abs(quasi_result-exact)
-          << "\n";
+    std::cout << "Actual error = " << std::abs(quasi_result-exact) << "\n";
 
-std::cout << "Estimated error = "
-          << quasi_est/(M_PI*M_PI*M_PI)
-          << "\n";
+    std::cout << "Estimated error = " << quasi_est/(M_PI*M_PI*M_PI) << "\n";
+    
+    std::cout << "We see that the quasi-radom sequence yields the lowest acutual error in this case." << "\n";
 
     std::cout << "\nStratified sampling:\n";
 
-lcg rnd7(1234);
+    lcg rnd7(1234);
 
-auto [strat_result,strat_error] =
-    stratifiedmc(
-        f_circle,
-        a,
-        b,
-        100000,
-        rnd7
-    );
+    auto [strat_result,strat_error] = stratifiedmc(f_circle, a, b, 100000, rnd7);
 
-std::cout << "Circle area = "
-          << strat_result
-          << "\n";
+    std::cout << "Circle area = " << strat_result << "\n";
 
-std::cout << "Actual error = "
-          << std::abs(strat_result-theoretical_result_circle)
-          << "\n";
+    std::cout << "Actual error = " << std::abs(strat_result-theoretical_result_circle) << "\n";
 
-std::cout << "Estimated error = "
-          << strat_error
-          << "\n";
+    std::cout << "Estimated error = " << strat_error << "\n";
     
-          return 0;
+    return 0;
 }

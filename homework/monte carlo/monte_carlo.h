@@ -7,6 +7,12 @@
 #include <iostream>
 #include <random>
 
+/*
+AI use: AI has assisted with tasks such as debugging, helping to translate algorithms and pseudocode from lecture pdf notes into C++ syntax, and help design tests.
+Since I made many of the homeworks before it was stated that we should mark the AI-generated code, this is not possible. In general, AI has been used as a tool in all project files.
+*/
+
+
 //Random uniform generator
 struct lcg{
     uint64_t seed;
@@ -32,9 +38,9 @@ inline std::vector<int> prime_numbers(int n){
 
         for(int p : primes){
             if(p*p > candidate) break;
-            if(candidate % p == 0){
-                isprime=false;
-                break;
+                if(candidate % p == 0){
+                    isprime=false;
+                    break;
             }
         }
 
@@ -166,7 +172,6 @@ inline std::tuple<double,double> quasimc(
 
     return {result1,error};
 
-    
 }
 
 inline std::tuple<double,double> plainmc_std(
@@ -284,16 +289,13 @@ inline std::tuple<double,double> plainmc_std(
     int Nleft=(N-nmin)/2;
     int Nright=(N-nmin)-Nleft;
 
-    auto [Ileft,Eleft] =
-        stratifiedmc(f,a,b,Nleft,rnd);
+    auto [Ileft,Eleft] = stratifiedmc(f,a,b,Nleft,rnd);
 
-    auto [Iright,Eright] =
-        stratifiedmc(f,a2,b2,Nright,rnd);
+    auto [Iright,Eright] = stratifiedmc(f,a2,b2,Nright,rnd);
 
     double I = Ileft + Iright;
 
-    double E =
-        std::sqrt(Eleft*Eleft + Eright*Eright);
+    double E = std::sqrt(Eleft*Eleft + Eright*Eright);
 
     return {I,E};
 }
