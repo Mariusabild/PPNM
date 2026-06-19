@@ -12,10 +12,12 @@ set title "Hydrogen radial wavefunctions"
 
 set grid
 
-plot "wave.dat" using 1:2 with lines lw 2 title "n=1 numerical", \
-     "wave.dat" using 1:3 with lines lw 2 title "n=2 numerical", \
-     "wave.dat" using 1:4 with lines lw 2 title "n=3 numerical", \
-     2*x*exp(-x) with lines lw 2 title "n=1 exact"
+plot \
+    "wave.dat" using 1:2 with lines lw 2 title "n=1 numerical", \
+    "wave.dat" using 1:3 with lines lw 2 title "n=2 numerical", \
+    "wave.dat" using 1:4 with lines lw 2 title "n=3 numerical", \
+    2*x*exp(-x) with lines dt 2 lw 2 title "n=1 exact", \
+    "wave.dat" using 1:(-$6) with lines dt 2 lw 2 title "n=2 exact"
      
 # -------------------------
 # dr convergence

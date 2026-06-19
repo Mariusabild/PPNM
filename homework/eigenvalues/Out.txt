@@ -20,7 +20,7 @@ V^TAV (should be diagonal):
    1.8e-16  -2.78e-17      0.647   4.19e-15 
   1.11e-16  -1.11e-16   4.11e-15       1.82 
 
-This appears diagonal after multiple runs. Please inspect as well.
+This appears diagonal after multiple runs.
 
 Eigenvalues:
 -0.335551
@@ -46,7 +46,7 @@ Original A:
       0.78        0.1      0.334      0.143 
      0.597      0.459      0.143      0.651 
 
-These seem to match, as expected. Please insepct as well.
+These seem to match, as expected.
 V^TV (should be identity matrix):
          1    2.5e-16  -2.78e-17  -1.94e-16 
    2.5e-16          1  -1.11e-16  -2.22e-16 
@@ -76,3 +76,5 @@ n=2: numerical = -0.111178, exact = -0.125
 As seen, these seem to match decently well.
 Ground state energy -0.481455
 Please see dr_convergence.png and rmax_convergence.png for the convergence part of part B. It can be seen that as dr decreases, the numerical solution approaches the exact energy E_0 = -0.5, and as r_max increases, the numerical solution aproaches -0,5 as well. However, the biggest difference occour between r_max = 5 and r_max = 7.
+
+For part C, please inspect timing.png. Here we observe that matrix diagonalization scales as O(n^3).

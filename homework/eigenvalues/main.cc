@@ -5,6 +5,13 @@
 #include<cstring>
 #include<cmath>
 #include<random>
+#include<chrono>
+
+/*
+AI use: AI has assisted with tasks such as debugging, helping to translate algorithms and pseudocode from lecture pdf notes into C++ syntax, and help design tests.
+
+Since I made many of the homeworks before it was stated that we should mark the AI-generated code, this is not possible. In general, AI has been used as a tool in all project files.
+*/
 
 int main(int argc, char** argv){
 
@@ -45,30 +52,36 @@ int main(int argc, char** argv){
     for(int k=1;k<e.size();k++)
         if(e[k] < e[k0]) k0 = k;
 
-    // -----------------------------
-    // write wavefunction to file
-    // -----------------------------
-
     std::ofstream wave("wave.dat");
 
     wave<<"# r f(r)\n";
 
-    wave<<"# r f0 f1 f2\n";
+    wave<<"# r f0 f1 f2 exact1 exact2\n";
 
-    for(int i=0;i<npoints;i++){
-        wave
-        << r[i] << " "
-        << Vhyd(i,k0)/sqrt(dr) << " "
-        << Vhyd(i,k0+1)/sqrt(dr) << " "
-        << Vhyd(i,k0+2)/sqrt(dr)
-        << "\n";
-    }
+for(int i=0;i<npoints;i++){
+
+    double rr = r[i];
+
+    double exact1 =
+        2.0*rr*exp(-rr);
+
+    double exact2 =
+        (1.0/sqrt(2.0))
+        *rr
+        *(1.0-rr/2.0)
+        *exp(-rr/2.0);
+
+    wave
+    << rr << " "
+    << Vhyd(i,k0)/sqrt(dr) << " "
+    << Vhyd(i,k0+1)/sqrt(dr) << " "
+    << Vhyd(i,k0+2)/sqrt(dr) << " "
+    << exact1 << " "
+    << exact2 << " "
+    << "\n";
+}
 
     wave.close();
-    
-    // --------------------------------------------------
-    // Jacobi test 
-    // --------------------------------------------------
 
     std::mt19937 rng(42);
     std::uniform_real_distribution<double> dist(0.0,1.0);
@@ -103,7 +116,7 @@ int main(int argc, char** argv){
     pp::matrix VVT  = V*VT;
 
     VTAV.print("\nV^TAV (should be diagonal):");
-    std::cout << "\nThis appears diagonal after multiple runs. Please inspect as well.\n";
+    std::cout << "\nThis appears diagonal after multiple runs.\n";
     std::cout<<"\nEigenvalues:\n";
     for(int i=0;i<w.size();i++)
         std::cout<<w[i]<<"\n";
@@ -111,7 +124,7 @@ int main(int argc, char** argv){
 
     VDVT.print("\nVDV^T (should equal original A):");
     A.print("\nOriginal A:");
-    std::cout << "\nThese seem to match, as expected. Please insepct as well.";
+    std::cout << "\nThese seem to match, as expected.";
 
     VTV.print("\nV^TV (should be identity matrix):");
     VVT.print("\nVV^T (should be identity matrix):");
@@ -133,5 +146,6 @@ int main(int argc, char** argv){
     std::cout<<"Ground state energy "<<e[k0]<<"\n";
 
     std::cout << "Please see dr_convergence.png and rmax_convergence.png for the convergence part of part B. It can be seen that as dr decreases, the numerical solution approaches the exact energy E_0 = -0.5, and as r_max increases, the numerical solution aproaches -0,5 as well. However, the biggest difference occour between r_max = 5 and r_max = 7." << "\n";
+    std::cout << "\nFor part C, please inspect timing.png. Here we observe that matrix diagonalization scales as O(n^3)." << "\n";
     return 0;
 }

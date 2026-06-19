@@ -3,8 +3,14 @@
 #include <cmath>
 #include <tuple>
 
-namespace pp {
+/*
+AI use: AI has assisted with tasks such as debugging, helping to translate algorithms and pseudocode from lecture pdf notes into C++ syntax, and help design tests.
 
+Since I made many of the homeworks before it was stated that we should mark the AI-generated code, this is not possible. In general, AI has been used as a tool in all project files.
+*/
+
+namespace pp {
+//From task description
 void timesJ(matrix& A, int p, int q, double theta){
     double c = std::cos(theta), s = std::sin(theta);
     for(int i = 0; i < A.size1(); i++) {
@@ -13,7 +19,7 @@ void timesJ(matrix& A, int p, int q, double theta){
         A(i,q) = s*aip + c*aiq;
     }
 }
-
+//From task description
 void Jtimes(matrix& A, int p, int q, double theta){
     double c = std::cos(theta), s = std::sin(theta);
     for(int j = 0; j < A.size2(); j++) {
@@ -23,6 +29,7 @@ void Jtimes(matrix& A, int p, int q, double theta){
     }
 }
 
+//From task description
 std::tuple<vector,matrix> jacobi(matrix A){
 
     int n = A.size1();
@@ -37,8 +44,6 @@ std::tuple<vector,matrix> jacobi(matrix A){
 
         for(int p = 0; p < n-1; p++){
             for(int q = p+1; q < n; q++){
-                
-
                 double apq = A(p,q);
                 double app = A(p,p);
                 double aqq = A(q,q);
