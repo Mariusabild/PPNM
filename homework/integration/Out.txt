@@ -12,7 +12,7 @@ log(x)/sqrt(x): error = 5.86947e-10
 Known value erf(1) = 0.842701
 Calculated value erf(1) = 0.842701
 Thus the error is = 1.2429e-09
-Please check erf_curve.png for a plot of the error function.
+Please check erf_curve.png for a plot of the error function. Also see erf_plot.png
 ======== 1/sqrt(x)========
 
  Normal integrator: 
@@ -30,9 +30,9 @@ Result: -3.99991 calls: 416
 Result: -3.99999 calls: 1880
 A test vs scipy.quad has been run on the function f(x)=log(x)/sqrt(x), which yielded: 
 Result: -4.000000000000085, Calls: 315
-Thus we can see, that for some cases, the CC integrator is best, for others the normal one is
+Thus we can see, that for some cases, the CC integrator is best, for others the normal one is. However, the scipy.quad outperformed both, in calls and result.
 
-Test with infinite integrals wewritten: 
+Test with infinite integrals rewritten: 
 ∫dx e^(-x)^2 from -infinity to infinity = 1.77245 with calls: 1128
 ∫dx e^(-x) from 0 to infinity = 1 with calls: 540
 ∫dx e^(x) from -infinity to 0 = 1 with calls: 540
@@ -41,3 +41,27 @@ Test with infinite integrals wewritten:
 exp(-x^2): Result: 1.7724538509055159 Calls: 270
 exp(-x):Result: 1.0000000000000002 Calls: 135
 exp(x): Result: 1.0000000000000002 Calls: 135
+Thus scipy integrate outperform the one implemented here.
+
+Part C: Error estimate investigation
+
+Integral of sqrt(x)
+Result          = 0.666954
+Exact           = 0.666667
+Estimated error = 0.000451855
+Actual error    = 0.000287242
+Ratio est/act   = 1.57308
+
+Integral of 1/sqrt(x)
+Result          = 1.99996
+Exact           = 2
+Estimated error = 0.000412013
+Actual error    = 3.84999e-05
+Ratio est/act   = 10.7016
+
+Integral of log(x)/sqrt(x)
+Result          = -3.99992
+Exact           = -4
+Estimated error = 0.000754017
+Actual error    = 8.2941e-05
+Ratio est/act   = 9.091
