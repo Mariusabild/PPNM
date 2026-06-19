@@ -3,6 +3,11 @@
 #include <vector>
 #include <functional>
 
+/*
+AI use: AI has assisted with tasks such as debugging, helping to translate algorithms and pseudocode from lecture pdf notes into C++ syntax, and help design tests.
+Since I made many of the homeworks before it was stated that we should mark the AI-generated code, this is not possible. In general, AI has been used as a tool in all project files.
+*/
+
 int binsearch(const std::vector<double>& x, double z){
     assert(z >= x[0] && z <= x[x.size()-1]); //Tjekker z faktisk ligger i intervallet, returnerer fejl hvis ikke
     
@@ -78,7 +83,6 @@ std::function<double(double)> make_qspline(std::vector<double> x, std::vector<do
         b[i] = p[i] - c[i]*h[i];
     }
 
-    
     return [x = std::move(x), y = std::move(y), 
             b = std::move(b), c = std::move(c)]
            (double z){

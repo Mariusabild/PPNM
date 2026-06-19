@@ -88,10 +88,6 @@ inline matrix qr::inverse() const {
         inv[i] = x;
     }
     return inv;
-
-    
-
-
 }
 
 }
