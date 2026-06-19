@@ -7,6 +7,12 @@
 #include "matrix.h"
 #include "minimization.h"
 
+/*
+AI use: AI has assisted with tasks such as debugging, helping to translate algorithms and pseudocode from lecture pdf notes into C++ syntax, and help design tests.
+Since I made many of the homeworks before it was stated that we should mark the AI-generated code, this is not possible. In general, AI has been used as a tool in all project files.
+In this particular project, AI has been used in all project parts, so everything is marked as such.
+*/
+
 namespace pp {
 
 struct ann {

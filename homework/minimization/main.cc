@@ -174,7 +174,7 @@ std::cout
     << h_c[0] << " "
     << h_c[1] << "\n\n"
 
-    << "Conclusion: For the Rosenbrock, we see that the central difference is more correct as we expect (1,1), which the central difference method yields, however using 1 more step. The Himmelblau is'nt improved by using the central difference method however.\n";
+    << "Conclusion: For the Rosenbrock, we see that the central difference method is more correct as we expect (1,1), which the central difference method yields, however using 1 more step. The Himmelblau is not improved noticebly by using the central difference method however.\n";
 
     return 0;
 }

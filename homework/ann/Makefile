@@ -13,4 +13,4 @@ main: main.cc
 .PHONY:clean
 
 clean:
-	rm main *.png Out.txt fit.txt ode_exact.txt antiderivative.txt second_derivative.txt derivative.txt
+	rm main *.png *.txt

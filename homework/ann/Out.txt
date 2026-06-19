@@ -8,3 +8,4 @@ A(0)   = -3.50464
  Interpolation done
 Initial ODE cost = 42.0756
 Final ODE cost = 8.21351e-07
+Please see plots for part A/B/C.
