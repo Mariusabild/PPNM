@@ -3,11 +3,14 @@ Mass  = 125.415
 Gamma = 2.27139
 A     = 7.54613
 
+Rosenbrock
 Steps = 18
 Central steps = 19
+
+Himmelblau
 Steps = 5
 Central steps = 5
-Comibned Part A/C: Comparison, with the steps given above for the central and forward difference methods.
+Combined Part A/C: Comparison, with the steps given above for the central and forward difference methods.
 
 Rosenbrock
 Forward difference : 0.999841 0.999681

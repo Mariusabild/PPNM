@@ -3,6 +3,12 @@
 #include <vector>
 #include <fstream>
 
+/*
+AI use: AI has assisted with tasks such as debugging, helping to translate algorithms and pseudocode from lecture pdf notes into C++ syntax, and help design tests.
+Since I made many of the homeworks before it was stated that we should mark the AI-generated code, this is not possible. In general, AI has been used as a tool in all project files.
+In this particular project, AI has been used in all project parts, so everything is marked as such.
+*/
+
 double rosenbrock(const pp::vector& v){
 
     double x=v[0];
@@ -116,7 +122,7 @@ for(double E=100; E<=160; E+=0.1){
     pp::vector r0(2);
 r0[0] = -1;
 r0[1] = 1;
-
+std::cout << "Rosenbrock\n";
 pp::vector r =
     pp::newton_min(
         rosenbrock,
@@ -133,6 +139,8 @@ pp::vector h0(2);
 h0[0] = 2;
 h0[1] = 2;
 
+
+std::cout << "\nHimmelblau\n";
 pp::vector h =
     pp::newton_min(
         himmelblau,
@@ -146,7 +154,7 @@ pp::vector h_c =
     );
 
 std::cout
-    << "Comibned Part A/C: Comparison, with the steps given above for the central and forward difference methods.\n\n"
+    << "Combined Part A/C: Comparison, with the steps given above for the central and forward difference methods.\n\n"
 
     << "Rosenbrock\n"
     << "Forward difference : "
