@@ -1,4 +1,4 @@
-Please see decay.png, which shows a fit matching nicely with the data points.
+Please see decay_uncertainties.png, which shows a fit matching nicely with the data points, plus/minus the uncertanties, for part A/C.
 
 The fitted parameters are: 
 a = 142.404

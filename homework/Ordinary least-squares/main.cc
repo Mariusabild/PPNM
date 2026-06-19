@@ -8,6 +8,12 @@
 #include <iostream>
 #include <fstream>
 
+/*
+AI use: AI has assisted with tasks such as debugging, helping to translate algorithms and pseudocode from lecture pdf notes into C++ syntax, and help design tests.
+Since I made many of the homeworks before it was stated that we should mark the AI-generated code, this is not possible. In general, AI has been used as a tool in all project files.
+*/
+
+
 int main() {
 
     //Data
@@ -44,7 +50,7 @@ int main() {
     double dlambda = dc1;
     double dT = log(2)/(lambda*lambda) * dlambda;
 
-    std::cout << "Please see decay.png, which shows a fit matching nicely with the data points." << "\n\n";
+    std::cout << "Please see decay_uncertainties.png, which shows a fit matching nicely with the data points, plus/minus the uncertanties, for part A/C." << "\n\n";
 
     //Print aprameters
     std::cout << "The fitted parameters are: " << "\n";
@@ -64,6 +70,22 @@ int main() {
         double yy = a*exp(-lambda*tt);
         fit << tt << " " << yy << "\n";
     }
+    //Part C
+    std::ofstream fit_plus("fit_plus.txt");
+    std::ofstream fit_minus("fit_minus.txt");
+
+    double a_plus     = exp(c[0] + dc0);
+    double lambda_plus  = -(c[1] + dc1);
+
+    double a_minus    = exp(c[0] - dc0);
+    double lambda_minus = -(c[1] - dc1);
+
+    for(double tt=0; tt<=16; tt+=0.1){
+
+        fit_plus << tt << " " << a_plus*exp(-lambda_plus*tt) << "\n";
+
+        fit_minus << tt << " " << a_minus*exp(-lambda_minus*tt) << "\n";
+}
 
     //Modern value
     double modern = 3.66;
@@ -84,12 +106,6 @@ int main() {
 
     double sigma = diff/dT;
 
-    std::cout
-    << "The discrepancy is "
-    << diff
-    << " days, corresponding to about "
-    << sigma
-    << " sigma.\n"
-    << "This is more than 1 sigma, so no, it does not agree with the modern day value." << "\n";
+    std::cout << "The discrepancy is " << diff << " days, corresponding to about " << sigma << " sigma.\n" << "This is more than 1 sigma, so no, it does not agree with the modern day value." << "\n";
     return 0;
 }

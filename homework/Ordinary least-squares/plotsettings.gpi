@@ -1,8 +1,12 @@
-set terminal pngcairo
-set output "decay.png"
+set terminal pngcairo size 800,600
+set output "decay_uncertainties.png"
 
 set xlabel "Time (days)"
 set ylabel "Activity"
+set key top right
 
-plot "data.txt" using 1:2:3 with yerrorbars title "data", \
-     "fit.txt" using 1:2 with lines title "fit"
+plot \
+    "data.txt" using 1:2:3 with yerrorbars title "Data", \
+    "fit.txt" using 1:2 with lines lw 2 title "Best fit", \
+    "fit_plus.txt" using 1:2 with lines title "Fit + uncertainty", \
+    "fit_minus.txt" using 1:2 with lines title "Fit - uncertainty"

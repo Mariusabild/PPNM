@@ -11,4 +11,4 @@ plot: plotsettings.gpi
 	gnuplot plotsettings.gpi
 
 clean:
-	rm main decay.png *.txt
+	rm main decay_uncertainties.png *.txt
