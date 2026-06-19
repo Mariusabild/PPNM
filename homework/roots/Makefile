@@ -9,4 +9,4 @@ main: main.cc
 .PHONY:clean
 
 clean:
-	rm main *.svg
+	rm main *.svg Out.txt
