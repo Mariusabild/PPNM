@@ -3,11 +3,14 @@
 #include <cmath>
 #include <fstream>
 
+/*
+AI use: AI has assisted with tasks such as debugging, helping to translate algorithms and pseudocode from lecture pdf notes into C++ syntax, and help design tests.
+Since I made many of the homeworks before it was stated that we should mark the AI-generated code, this is not possible. In general, AI has been used as a tool in all project files.
+*/
+
 int main(){
 
-    // -------------------------------
     // PART A TESTS
-    // -------------------------------
 
     std::cout << "Tests... " << "\n\n";
 
@@ -81,14 +84,11 @@ int main(){
     }
 
 }
-
-    // -------------------------------
     // PART B: ORBITS
-    // -------------------------------
 
     // Case 1
     {
-        //Notice we have set a small pertubation here
+        //Notice we have set a small pertubation here. Otherwise we dont get enough points
         double eps = 10e-6;
 
         auto f = [eps](double phi, pp::vector y){
@@ -98,7 +98,6 @@ int main(){
             };
         };
 
-        //small pertubation
         pp::vector y0 = {1.0, 0};
 
         auto [phis, ys] = pp::driver(f, 0.0, 100.0, y0, 0.125, 1e-10, 1e-10);
@@ -157,10 +156,8 @@ int main(){
 
     }
 
+// PART C: THREEBODY FIGURE 8
 
-    // -------------------------------
-// PART C: THREE-BODY FIGURE-8
-// -------------------------------
 {
     auto f = [](double t, pp::vector z){
 
@@ -213,30 +210,18 @@ int main(){
         return dz;
     };
 
-    pp::vector z0 = {
-         0.4662036850,  0.4323657300,
-         0.4662036850,  0.4323657300,
-        -0.93240737,   -0.86473146,
-
-        -0.97000436,    0.24308753,
-         0.97000436,   -0.24308753,
-         0.0,           0.0
-    };
+    pp::vector z0 = {0.4662036850,  0.4323657300, 0.4662036850, 0.4323657300,-0.93240737, -0.86473146,-0.97000436, 0.24308753, 0.97000436, -0.24308753,0.0, 0.0};
 
     auto [ts, zs] = pp::driver(f, 0.0, 10.0, z0, 0.01, 1e-6, 1e-6);
 
     std::ofstream file("threebody.txt");
 
     for(int i=0;i<ts.size();i++){
-        file << zs[i][6]  << " " << zs[i][7]  << " "
-             << zs[i][8]  << " " << zs[i][9]  << " "
-             << zs[i][10] << " " << zs[i][11] << "\n";
-    }
+        file << zs[i][6]  << " " << zs[i][7]  << " " << zs[i][8]  << " " << zs[i][9]  << " " << zs[i][10] << " " << zs[i][11] << "\n";}
 
     file.close();
 
 }
-
     std::cout << "Please check orbit.png, and threebody.png for part B and C" << "\n";
 
     return 0;

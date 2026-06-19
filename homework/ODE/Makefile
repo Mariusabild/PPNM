@@ -14,5 +14,5 @@ plot: orbit.gpi threebody.gpi damped_oscillator.gpi
 
 .PHONY:clean
 clean:
-	rm main *.png orbit_circle.txt orbit_ellipse.txt orbit_precession.txt threebodyplot.png Out.txt
+	rm main *.png orbit_circle.txt orbit_ellipse.txt orbit_precession.txt Out.txt
 	

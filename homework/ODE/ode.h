@@ -3,6 +3,11 @@
 #include <functional>
 #include "vec.h"
 
+/*
+AI use: AI has assisted with tasks such as debugging, helping to translate algorithms and pseudocode from lecture pdf notes into C++ syntax, and help design tests.
+Since I made many of the homeworks before it was stated that we should mark the AI-generated code, this is not possible. In general, AI has been used as a tool in all project files.
+*/
+
 namespace pp{
 
     std::tuple<vector, vector> rkstep12(std::function<vector(double, vector)> f,double x,vector y,double h){
