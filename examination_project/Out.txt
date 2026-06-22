@@ -1,0 +1,55 @@
+
+Perfoming tests... 
+
+Random symmetric test matrix A:
+
+     0.797      0.183       0.78      0.597      0.446 
+       0.1      0.459      0.334      0.143      0.651 
+    0.0564      0.722      0.939   0.000779      0.992 
+     0.617      0.612    0.00707     0.0231      0.525 
+       0.4     0.0467      0.974      0.233     0.0906 
+
+Reconstructing A as UDV^T: 
+
+     0.797      0.183       0.78      0.597      0.446 
+       0.1      0.459      0.334      0.143      0.651 
+    0.0564      0.722      0.939   0.000779      0.992 
+     0.617      0.612    0.00707     0.0231      0.525 
+       0.4     0.0467      0.974      0.233     0.0906 
+According to theory, this matrix product is equal to the original matrix A. Here we can see A is succesfully reconstructed.
+
+This can also be seen as UDV^T-A is equal to: 
+
+  1.11e-16          0  -3.33e-16   1.11e-16   1.67e-16 
+ -8.33e-17   5.55e-17   1.11e-16  -2.78e-17  -1.11e-16 
+ -9.02e-17   2.22e-16   4.44e-16   1.23e-16   1.11e-16 
+  2.22e-16   2.22e-16   5.46e-17   9.71e-17   1.11e-16 
+  2.78e-16   2.43e-16          0   2.78e-17   3.19e-16 
+
+ All elements is approximately equal to zero.
+
+ D should be diagonal, and contain no negative elements:
+
+    0.0337          0          0          0          0 
+         0      0.293          0          0          0 
+         0          0      0.786          0          0 
+         0          0          0       1.03          0 
+         0          0          0          0       2.33 
+
+D apperas diagonal as expected, and contain no negative elements
+
+U and V should be orthogonal according to theory
+U^TU
+         1  -5.55e-17   1.71e-11  -2.14e-14   5.55e-17 
+ -5.55e-17          1   1.94e-15   1.11e-16  -2.78e-17 
+  1.71e-11   1.94e-15          1   2.78e-17  -2.78e-17 
+ -2.14e-14   1.11e-16   2.78e-17          1   2.78e-17 
+  5.55e-17  -2.78e-17  -2.78e-17   2.78e-17          1 
+V^TV
+         1  -1.39e-16  -1.06e-16  -5.55e-17   1.67e-16 
+ -1.39e-16          1   6.42e-17          0   2.78e-17 
+ -1.06e-16   6.42e-17          1  -2.65e-16   4.77e-17 
+ -5.55e-17          0  -2.65e-16          1   5.55e-17 
+  1.67e-16   2.78e-17   4.77e-17   5.55e-17          1 
+
+As we can see, both products equal the identity matrix. The off diagonal elements is equal to zero upto machine epsilon.
