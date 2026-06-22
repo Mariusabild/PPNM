@@ -83,4 +83,7 @@ Multiply by -1:
 
 tan(2*theta) = 2*(a_p^Ta_q)/(a_q^T*a_q - a_p^Ta_p)
 
+This is the desired formula to be shown.
+
 # Implementation of code
+
