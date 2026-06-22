@@ -3,6 +3,7 @@
 #include <iostream>
 #include <random>
 
+//main.cc is written by myself, using adapted parts from old homeworks
 int main(){
 
     //Generate a random sqaure matrix. Adapted from my main.cc from my homework "eigenvalues"
@@ -49,7 +50,6 @@ int main(){
     VTV.print("V^TV");
 
     std::cout << "\nAs we can see, both products equal the identity matrix. The off diagonal elements is equal to zero upto machine epsilon." << "\n";
-
 
     return 0;
 }

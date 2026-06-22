@@ -13,6 +13,7 @@ namespace pp{
         }
     }
 
+    //Adapted from a old homework. ChatGPT has been used to help implement parts of the new theory
     std::tuple<matrix,matrix, matrix> jacobi_svd(matrix A){
 
         double epsilon = 1e-12;
@@ -73,6 +74,5 @@ namespace pp{
         }
 
     return std::make_tuple(U, D, V);
-}
-
+    }
 }
