@@ -1,5 +1,5 @@
 # Examination project by Marius Abildgaard Brødbæk
-s
+
 Author: Marius Abildgaard Brødbæk
 Studienummer: 202308011
 Examination project: One-sided Jacobi algorithm for Singular Value Decomposition (index number 19)
@@ -39,4 +39,48 @@ where a'i is the i-th column of matrix A' and ui us the i-th column of matrix U.
 
 # Proof/check of formula for theta
 
+From  equation (13) in the book https://fedorov.sdfeu.org/prog/book/eigen.pdf 
 
+a_p' = c*a_p - s*a_q
+a_q' = s*a_p + c*a_q
+
+Which are the collums after a Jacobi rotation.
+
+We require these to be orthogornal after a rotation:
+
+(a_p')^T*a_q' = 0
+
+We insert our expressions which yields:
+
+(c*a_p - s*a_q)^T*(s*a_p + c*a_q) = 0
+
+Now we can expand and rearrange:
+
+(c^2 -s^2)*a_p^Ta_q+c*s*(a_p^T*a_p - a_q^Ta_q) = 0
+
+Now we can use the trigonometric identities:
+
+c^2-s^2=cos(2*theta)
+2*c*s= sin(2*theta)
+
+This yields:
+
+cos(2*theta)*a_p^Ta_q+1/2*sin(2*theta)(a_p^T*a_p - a_q^Ta_q) = 0
+
+Divide by cos(2*theta) to obtain:
+
+a_p^Ta_q+1/2*sin(2*theta)/cos(2*theta)*(a_p^T*a_p - a_q^Ta_q) = 0
+
+Use the definition of tan(theta) = sin(theta)/cos(theta), and isolate tan(2*theta):
+
+a_p^Ta_q+1/2*tan(2*theta)*(a_p^T*a_p - a_q^Ta_q) = 0
+
+Rearrange:
+
+tan(2*theta) = -2*(a_p^Ta_q)/(a_p^T*a_p - a_q^Ta_q)
+
+Multiply by -1:
+
+tan(2*theta) = 2*(a_p^Ta_q)/(a_q^T*a_q - a_p^Ta_p)
+
+# Implementation of code
