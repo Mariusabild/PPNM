@@ -41,7 +41,7 @@ where a'i is the i-th column of matrix A' and ui us the i-th column of matrix U.
 
 From  equation (13) in the book https://fedorov.sdfeu.org/prog/book/eigen.pdf 
 
-a_p' = c*a_p - s*a_q
+a_p' = c*a_p - s*a_q and  
 a_q' = s*a_p + c*a_q
 
 Which are the collums after a Jacobi rotation.
