@@ -22,4 +22,4 @@ timing.png: out.times.data
 .PHONY:clean
 
 clean:
-	rm main Out.txt
+	rm main *.txt timing.png

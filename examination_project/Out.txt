@@ -1,5 +1,7 @@
 
-Perfoming tests... 
+================================================================================
+
+Perfoming verification tests 
 
 Random symmetric test matrix A:
 
@@ -53,3 +55,25 @@ V^TV
   1.67e-16   2.78e-17   4.77e-17   5.55e-17          1 
 
 As we can see, both products equal the identity matrix. The off diagonal elements is equal to zero upto machine epsilon.
+
+================================================================================
+Solving a homogeneous linear system using SVD
+
+Matrix B with rank 1, since collumn 2 and 3 linear dependent of collumn 1, set to 2*col1 and 3*col1 respectively
+         1          2          3 
+         2          4          6 
+         3          6          9 
+
+Matrix D obtained when performing SVD on B
+         0          0          0 
+         0   1.02e-15          0 
+         0          0         14 
+
+Smallest identified singular value: 0
+
+Candidate vector x in nullspace solving Bx = 0: 
+     0.894     -0.447          0 
+
+B*x:          0          0          0 
+
+Thus x belongs to the nullspace of B.
