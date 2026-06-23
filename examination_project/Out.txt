@@ -77,3 +77,13 @@ Candidate vector x in nullspace solving Bx = 0:
 B*x:          0          0          0 
 
 Thus x belongs to the nullspace of B.
+
+================================================================================
+Calculating pseudo inverse and testing the identity A*A^+*A = A 
+
+Using A*A^+*A = A, testing A*A^+*A - A
+   3.2e-12   5.51e-13  -2.54e-12   7.63e-13   1.63e-13 
+ -7.54e-12  -1.65e-12   6.07e-12  -2.06e-12  -1.39e-13 
+  4.24e-12   1.15e-12  -3.47e-12   1.31e-12  -7.26e-14 
+ -3.38e-13  -3.83e-13   3.46e-13  -3.17e-13   2.07e-13 
+ -4.14e-12  -7.87e-13   3.31e-12  -1.04e-12  -1.61e-13 

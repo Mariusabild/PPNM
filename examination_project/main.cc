@@ -52,7 +52,8 @@ int main(){
 
     std::cout << "\nAs we can see, both products equal the identity matrix. The off diagonal elements is equal to zero upto machine epsilon." << "\n";
 
-    //
+    //Solving a homogeneous linear system using SVD
+
     std::cout << "\n================================================================================" << "\n";
     std::cout << "Solving a homogeneous linear system using SVD" << "\n";
 
@@ -104,5 +105,29 @@ int main(){
 
     std::cout << "\nThus x belongs to the nullspace of B." << "\n";
 
+    //Pseudo inverse
+    std::cout << "\n================================================================================" << "\n";
+    std::cout << "Calculating pseudo inverse and testing the identity A*A^+*A = A " << "\n";
+
+    pp::matrix D_plus(n,n);
+    double epsilon = 10e-12;
+
+    for(int i = 0; i < n; i++){
+
+        if(D(i,i) > epsilon){
+            D_plus(i,i) = 1/D(i,i);
+        }
+    }
+
+    pp::matrix A_plus = V*D_plus*U.T();
+
+    //according to theory A*A^+*A = A
+    test = A*A_plus*A; 
+
+    pp::matrix difference = A-test;
+
+    difference.print("\nUsing A*A^+*A = A, testing A*A^+*A - A");
+
+    std::cout << "All elements is equal to zero upto machine epsilon, producing the expected behaviour" << "\n";
     return 0;
 }
