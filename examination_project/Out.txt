@@ -87,3 +87,14 @@ Using A*A^+*A = A, testing A*A^+*A - A
   4.24e-12   1.15e-12  -3.47e-12   1.31e-12  -7.26e-14 
  -3.38e-13  -3.83e-13   3.46e-13  -3.17e-13   2.07e-13 
  -4.14e-12  -7.87e-13   3.31e-12  -1.04e-12  -1.61e-13 
+All elements is equal to zero upto nummerical precision, producing the expected behaviour
+
+================================================================================
+Low rank approximation using SVD
+Rank 1 max error = 0.462061
+Rank 2 max error = 0.478329
+Rank 3 max error = 0.115555
+Rank 4 max error = 0.0170178
+Rank 5 max error = 4.44089e-16
+
+As expected, the approximation error decreased as more singular values were retained. Due to the error being measured as element with the largest difference between the two matrixes, rank 2 shows a little larger error than rank 1.

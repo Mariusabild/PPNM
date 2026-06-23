@@ -23,7 +23,7 @@ int main(){
     std::cout << "\n================================================================================" << "\n";
     std::cout << "\nPerfoming verification tests " << "\n";
 
-    A.print("\nRandom symmetric test matrix A:\n");
+    A.print("\nRandomly generated test matrix A:\n");
 
     auto [U, D, V] = pp::jacobi_svd(A);
 
@@ -41,7 +41,7 @@ int main(){
 
     std::cout << "\n D should be diagonal, and contain no negative elements:" << "\n";
     D.print();
-    std::cout << "\nD apperas diagonal as expected, and contain no negative elements" << "\n";
+    std::cout << "\nD appears diagonal as expected, and contain no negative elements" << "\n";
 
     pp::matrix UTU = U.T()*U;
     pp::matrix VTV = V.T()*V;
@@ -93,7 +93,7 @@ int main(){
 
     pp::vector b = B*x;
 
-    B.print("\nMatrix B with rank 1, since collumn 2 and 3 linear dependent of collumn 1, set to 2*col1 and 3*col1 respectively");
+    B.print("\nMatrix B with rank 1, since column 2 and 3 linear dependent of column 1, set to 2*col1 and 3*col1 respectively");
 
     D2.print("\nMatrix D obtained when performing SVD on B");
 
@@ -128,6 +128,33 @@ int main(){
 
     difference.print("\nUsing A*A^+*A = A, testing A*A^+*A - A");
 
-    std::cout << "All elements is equal to zero upto machine epsilon, producing the expected behaviour" << "\n";
+    std::cout << "All elements is equal to zero upto numerical precision, producing the expected behaviour" << "\n";
+
+    //Low rank approximation using SVD
+    std::cout << "\n================================================================================" << "\n";
+    std::cout << "Low rank approximation using SVD" << "\n";
+
+    for(int k = 0; k < A.size1(); k++){ 
+        pp::matrix Dk = D;
+
+        for(int i = 0; i < n-(k+1); i++){
+            Dk(i,i) = 0;
+        }
+        pp::matrix Ak = U*Dk*V.T();
+
+        pp::matrix difference = Ak-A;
+        
+        double error = 0.0;
+        for(int i = 0; i < difference.size1(); i++){
+            for(int j = 0; j < difference.size2(); j++){
+                error = std::max(error, std::abs(difference(i,j)));
+            }
+        }
+
+        std::cout << "Rank " << k+1 << " max error = " << error << "\n";
+
+    }
+    std::cout << "\nAs expected, the approximation error generally decreased as more singular values were retained. Due to the error being measured as element with the largest difference between the two matrixes, rank 2 shows a little larger error than rank 1.";
+
     return 0;
 }
