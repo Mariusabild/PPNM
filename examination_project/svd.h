@@ -32,7 +32,7 @@ namespace pp{
             for(int p=0; p<n-1; p++){
                 for(int q = p+1; q < n; q++){
                     
-                    //From here
+                    //From line 36 to 44 is made together with ChatGPT
                     double apq = 0;
                     double app = 0;
                     double aqq = 0;
@@ -42,8 +42,6 @@ namespace pp{
                         app += A(i,p)*A(i,p);
                         aqq += A(i,q)*A(i,q);
                     }
-
-                    //To here is chat GPT
                 
                     if(fabs(apq) < epsilon) 
                         continue;
