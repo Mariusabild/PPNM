@@ -27,7 +27,7 @@ int main(int argc, char** argv){
         }
     }
 
-    auto [U, V, D] = pp::jacobi_svd(A);
+    auto [U, D, V] = pp::jacobi_svd(A);
 
     return 0;
 }

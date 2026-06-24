@@ -50,7 +50,7 @@ int main(){
     UTU.print("U^TU");
     VTV.print("V^TV");
 
-    std::cout << "\nAs we can see, both products equal the identity matrix. The off diagonal elements is equal to zero upto machine epsilon." << "\n";
+    std::cout << "\nAs we can see, both products equal the identity matrix. The off diagonal elements is equal to zero upto numerical precision." << "\n";
 
     //Solving a homogeneous linear system using SVD
 
@@ -74,7 +74,7 @@ int main(){
     auto[U2, D2, V2] = pp::jacobi_svd(B);
 
     int index_lowest = 0;
-    double value_lowest = D(index_lowest,index_lowest);
+    double value_lowest = D2(index_lowest,index_lowest);
 
     for(int i = 0; i < D2.size1(); i++){
         double value = D2(i,i);
@@ -87,7 +87,7 @@ int main(){
 
     pp::vector x(B.size1());
 
-    for(int i = 0; i < D.size1(); i++){
+    for(int i = 0; i < D2.size1(); i++){
         x[i] = V2(i, index_lowest);
     }
 
@@ -110,7 +110,7 @@ int main(){
     std::cout << "Calculating pseudo inverse and testing the identity A*A^+*A = A " << "\n";
 
     pp::matrix D_plus(n,n);
-    double epsilon = 10e-12;
+    double epsilon = 1e-12;
 
     for(int i = 0; i < n; i++){
 
@@ -154,7 +154,7 @@ int main(){
         std::cout << "Rank " << k+1 << " max error = " << error << "\n";
 
     }
-    std::cout << "\nAs expected, the approximation error generally decreased as more singular values were retained. Due to the error being measured as element with the largest difference between the two matrixes, rank 2 shows a little larger error than rank 1.";
+    std::cout << "\nAs expected, the approximation error generally decreased as more singular values were retained. Due to the error being measured as element with the largest difference between the two matrixes, rank 2 shows a little larger error than rank 1.\n";
 
     return 0;
 }

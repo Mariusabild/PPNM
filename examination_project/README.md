@@ -1,10 +1,10 @@
 # Examination project by Marius Abildgaard Brødbæk
 
-Author: Marius Abildgaard Brødbæk
-Studienummer: 202308011
-Examination project: One-sided Jacobi algorithm for Singular Value Decomposition (index number 19)
+- Author: Marius Abildgaard Brødbæk
+- Studienummer: 202308011
+- Examination project: One-sided Jacobi algorithm for Singular Value Decomposition (index number 19)
 
-Suggested grading on a scale from 1-10: 10
+Suggested grading on a scale from [0-10]: 10
 
 Link to my github repo: https://github.com/Mariusabild/PPNM
 
@@ -47,7 +47,7 @@ a_q' = s*a_p + c*a_q
 
 Which are the columns after a Jacobi rotation.
 
-We require these to be orthogornal after a rotation:
+We require these to be orthogonal after a rotation:
 
 (a_p')^T*a_q' = 0
 
@@ -93,33 +93,38 @@ This is the desired formula to be shown.
 
 I have implemented the theory in the task description and the book in "svd.h". This file both initialize and declare the algorithm in my namespace pp (practical programming). Furthermore I have a matrix and vector class I made earlier, in "matrix.h". I use this matrix class to implement the algorithm.
 
-First i have a timeJ function multiplying the Jacobi rotation matrix from the right. Then I make a function jacobi_svd which calculates apq app aqq, which is abbreviations of the terms in the formula for calculating the angle of rotation. p and q are swept cyclicly using for loops. The algorithm stops when all column overlaps a_p^T*a_q become smaller than a chosen tolerance as epsilon = 10^-12. After convergence, the singular values are computed using the norms of the orthogonalized columns and the columns of U are obtained as the normalized columns.
+First i have a timeJ function multiplying the Jacobi rotation matrix from the right. Then I make a function jacobi_svd which calculates apq app aqq, which is abbreviations of the terms in the formula for calculating the angle of rotation. p and q are swept cyclicly using for loops. The algorithm stops when all column overlaps a_p^T*a_q become smaller than a chosen tolerance as epsilon = 1e^-12. After convergence, the singular values are computed using the norms of the orthogonalized columns and the columns of U are obtained as the normalized columns.  The accumulated Jacobi rotations form the matrix V as stated in the theory above.
 
 # Verification and tests
 
-I have also made "main.cc", which performs tests of the algorithm to determine if it is implemented correct. In this, a generate a random 5x5 matrix A. Then i perform one sided SVD on it. These tests consists of the following:
+I have also made "main.cc", which performs tests of the algorithm to determine if it is implemented correct. In this, I generate a random 5x5 matrix A. Then i perform one sided SVD on it. These tests consists of the following:
 
 - Reconstruct A as A = U*D*V^T. Then I subtract the original matrix A, and obtain matrix elements on the order of 10^(-16), meaning they are practically identical.
 - Check whether D is a diagonal matrix with no negative elements (It is found to be diagonal, and contain no negative elements).
-- Calculate U^T*U and V^T*V, which should yield the identity matrix since they are orthogonal (They do indeed the identity matrix upto machine epsilon).
+- Calculate U^T*U and V^T*V, which should yield the identity matrix since they are orthogonal (They do indeed yield the identity matrix up to numerical precision).
 
 # Computational complexity
 
-To further investigate the computational complexity of one sided jacobi SVD algorithm, I made a log-log plot of using the algorithm on varying matrix sizes which can be seen in "timing.png". This is to test whether the algorithm scales as O(n^3). Each Jacobi sweep takes O(n^2) rotations, while each requires O(n) operations, yielding O(n^2)*O(n)=O(n^3). The plot shows a linear tendency in the log-log plot with a slope close to 3, matching the expected tendency.
+To further investigate the computational complexity of one sided jacobi SVD algorithm, using the one sided Jacobi SVD algorithm on varying matrix sizes and measuring the runtime, I performed a fit which can be seen in "timing.png". Each Jacobi sweep consists of O(n^2) rotations, while each requires O(n) operations, yielding O(n^2)*O(n)=O(n^3). The plot shows a linear tendency in the log-log plot, matching the expected tendency. During my run, I obtained a slope of approximately 3.09, lying close to the expected 3.
 
 ![Timing plot](timing.png)
 
 # Applications
+
 I have also implemented some applications of SVD inspired by theory from Wikipedia.
 
 ## Solving a homogenous linear equation
-I constructed a 3x3 matrix B with rank 1, and performed SVD on it. The SVD correctly identified vanishing singular values. The vector x corresponding to a vanishing singlar value was extracted and afterwards inserted into a equation yeilding Bx = 0. This shows how SVD can be used to identify vectors belonging to the nullspace of a matrix.
+
+I constructed a 3x3 matrix B with rank 1, and performed SVD on it. The SVD correctly identified vanishing singular values. The vector x corresponding to a vanishing singular value was extracted and afterwards inserted into a equation yielding Bx = 0. This shows how SVD can be used to identify vectors belonging to the nullspace of a matrix.
 
 ## Pseudo inverse
+
 I calculated the matrix D^+ as the reciprocal values of the nonzero singular values. Subsequently i calculated the pseudo inverse as A^+ = V*D^+*U^T. Afterwards i tested whether A*A^+*A = A, by calculating A*A^+*A - A, which yielded zero upto numerical precision in all matrix elements.
 
 ## Low rank approximation
-I made a low rank approximation by retaining only the largest singular values and setting the remaining singular values to zero. Afterwards i reconstructed the matrix as A_k = U*D_k*V^T. I then calucalted the difference between the original matrix and the approximated one, and found that the error decreased as the rank increased. However, I calculated the error as the maximal difference between the matrix elements. As a consequence, I saw a small increase in error when increasing the rank from 1 to 2. This is not necessarily minimized by the SVD low rank approximation theorem.
+
+I made a low rank approximation by retaining only the largest singular values and setting the remaining singular values to zero. Afterwards i reconstructed the matrix as A_k = U*D_k*V^T. I then calculated the difference between the original matrix and the approximated one, and found that the error decreased as the rank increased. However, I calculated the error as the maximal difference between the matrix elements. As a consequence, I saw a small increase in error when increasing the rank from 1 to 2. The SVD low rank approximation thereom minimizes certain matrix norms rather than the element wise one.
 
 # Use of AI
-The code parts generated by AI can be seen marked in the code as comments. This readme file is firstly written by myself, and afterwards discussed with ChatGPT.  
+
+The code parts that was generated by AI can be seen marked in the code as comments. This readme file is firstly written by myself, and afterwards discussed with ChatGPT.  

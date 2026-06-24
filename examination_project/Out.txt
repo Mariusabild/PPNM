@@ -3,7 +3,7 @@
 
 Perfoming verification tests 
 
-Random symmetric test matrix A:
+Randomly generated test matrix A:
 
      0.797      0.183       0.78      0.597      0.446 
        0.1      0.459      0.334      0.143      0.651 
@@ -38,7 +38,7 @@ This can also be seen as UDV^T-A is equal to:
          0          0          0       1.03          0 
          0          0          0          0       2.33 
 
-D apperas diagonal as expected, and contain no negative elements
+D appears diagonal as expected, and contain no negative elements
 
 U and V should be orthogonal according to theory
 U^TU
@@ -54,12 +54,12 @@ V^TV
  -5.55e-17          0  -2.65e-16          1   5.55e-17 
   1.67e-16   2.78e-17   4.77e-17   5.55e-17          1 
 
-As we can see, both products equal the identity matrix. The off diagonal elements is equal to zero upto machine epsilon.
+As we can see, both products equal the identity matrix. The off diagonal elements is equal to zero upto numerical precision.
 
 ================================================================================
 Solving a homogeneous linear system using SVD
 
-Matrix B with rank 1, since collumn 2 and 3 linear dependent of collumn 1, set to 2*col1 and 3*col1 respectively
+Matrix B with rank 1, since column 2 and 3 linear dependent of column 1, set to 2*col1 and 3*col1 respectively
          1          2          3 
          2          4          6 
          3          6          9 
@@ -87,7 +87,7 @@ Using A*A^+*A = A, testing A*A^+*A - A
   4.24e-12   1.15e-12  -3.47e-12   1.31e-12  -7.26e-14 
  -3.38e-13  -3.83e-13   3.46e-13  -3.17e-13   2.07e-13 
  -4.14e-12  -7.87e-13   3.31e-12  -1.04e-12  -1.61e-13 
-All elements is equal to zero upto nummerical precision, producing the expected behaviour
+All elements is equal to zero upto numerical precision, producing the expected behaviour
 
 ================================================================================
 Low rank approximation using SVD
@@ -97,4 +97,4 @@ Rank 3 max error = 0.115555
 Rank 4 max error = 0.0170178
 Rank 5 max error = 4.44089e-16
 
-As expected, the approximation error decreased as more singular values were retained. Due to the error being measured as element with the largest difference between the two matrixes, rank 2 shows a little larger error than rank 1.
+As expected, the approximation error generally decreased as more singular values were retained. Due to the error being measured as element with the largest difference between the two matrixes, rank 2 shows a little larger error than rank 1.

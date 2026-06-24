@@ -12,7 +12,7 @@ timing: timing.cc matrix.h svd.h
 
 out.times.data: timing
 	rm -f $@
-	for N in $$(seq 20 20 300); do \
+	for N in $$(seq 100 20 400); do \
 		/usr/bin/time -f "$$N %e" -ao $@ ./timing -size $$N ; \
 	done
 
@@ -22,4 +22,4 @@ timing.png: out.times.data
 .PHONY:clean
 
 clean:
-	rm main *.txt timing.png
+	rm main *.txt timing.png out.times.data fit.log
